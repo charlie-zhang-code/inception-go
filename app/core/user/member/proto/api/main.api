@@ -1,0 +1,46 @@
+info (
+	title:   "user.member"
+	desc:    "用户"
+	author:  "时叶zshey"
+	email:   "z_shey@163.com"
+	version: "v1.0.0"
+)
+
+import (
+	"type/type.api"
+)
+
+@server (
+	//      group:  demo/sys_user
+	prefix: /api/v1/user/member
+)
+service main {
+	// 添加用户
+	@handler AddSysUser
+	post /addSysUser (AddSysUserReq) returns (AddSysUserResp)
+
+	// 删除用户
+	@handler DeleteSysUser
+	get /deleteSysUser (DeleteSysUserReq) returns (DeleteSysUserResp)
+
+	// 更新用户
+	@handler UpdateSysUser
+	post /updateSysUser (UpdateSysUserReq) returns (UpdateSysUserResp)
+
+	// 更新用户状态
+	@handler UpdateSysUserStatus
+	post /updateSysUserStatus (UpdateSysUserStatusReq) returns (UpdateSysUserStatusResp)
+
+	// 查询用户详情
+	@handler QuerySysUserDetail
+	get /querySysUserDetail (QuerySysUserDetailReq) returns (QuerySysUserDetailResp)
+
+	// 分页查询用户列表
+	@handler QueryPageSysUserList
+	get /queryPageSysUserList (QueryPageSysUserListReq) returns (QueryPageSysUserListResp)
+
+	// 查询用户所有列表
+	@handler QuerySysUserList
+	get /querySysUserList (QuerySysUserListReq) returns (QuerySysUserListResp)
+}
+

@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS crucible_go;
+CREATE DATABASE IF NOT EXISTS crucible_go;
+

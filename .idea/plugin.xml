@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSetting">
+    <option name="dbConfig">
+      <DbParam>
+        <option name="apiPath" value="$PROJECT_DIR$/temp" />
+        <option name="author" value="时叶zshey" />
+        <option name="email" value="z_shey@163.com" />
+        <option name="prefix" value="" />
+        <option name="protoPath" value="$PROJECT_DIR$/temp" />
+      </DbParam>
+    </option>
+  </component>
+</project>
