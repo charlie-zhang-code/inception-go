@@ -35,19 +35,19 @@ cd E:\MyProjects\crucible_go\app\core\user\member
 生成Model，通过sql文件生成，数据库生成存在类型不匹配的问题
 
 ```bash
-goctl model mysql ddl --src=proto/sql/schema.sql --dir=proto/model
+goctl model mysql ddl --src=proto/sql/schema.sql --dir=proto/model --style goZero
 ```
 
 生成API
 
 ```bash
-goctl api go -api ./proto/api/main.api -dir ./api
+goctl api go -api ./proto/api/main.api -dir ./api --style goZero
 ```
 
 生成RPC
 
 ```bash
-goctl rpc protoc ./proto/rpc/main.proto --go_out=./rpc --go-grpc_out=./rpc --zrpc_out=./rpc -m
+goctl rpc protoc ./proto/rpc/main.proto --go_out=./rpc --go-grpc_out=./rpc --zrpc_out=./rpc -m --style goZero
 ```
 
 ## 配置文件

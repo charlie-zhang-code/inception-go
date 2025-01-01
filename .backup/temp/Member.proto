@@ -5,7 +5,7 @@ package main;
 option go_package = "./proto";
 
 // 添加用户
-message AddSysUserReq {
+message AddMemberReq {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -28,23 +28,23 @@ message AddSysUserReq {
   string create_by = 20; //创建该记录的用户标识符
 }
 
-message AddSysUserResp {
+message AddMemberResp {
   int32 code = 1;
   string message = 2;
 }
 
 // 删除用户
-message DeleteSysUserReq {
+message DeleteMemberReq {
   repeated int64 ids = 1;
 }
 
-message DeleteSysUserResp {
+message DeleteMemberResp {
   int32 code = 1;
   string message = 2;
 }
 
 // 更新用户
-message UpdateSysUserReq {
+message UpdateMemberReq {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -67,28 +67,28 @@ message UpdateSysUserReq {
   string update_by = 22; //最后更新该记录的用户标识符
 }
 
-message UpdateSysUserResp {
+message UpdateMemberResp {
   int32 code = 1;
   string message = 2;
 }
 
 // 更新用户状态
-message UpdateSysUserStatusReq {
+message UpdateMemberStatusReq {
   int32 status = 16; //状态，0表示禁用，1表示正常启用
 
 }
 
-message UpdateSysUserStatusResp {
+message UpdateMemberStatusResp {
   int32 code = 1;
   string message = 2;
 }
 
 // 查询用户详情
-message QuerySysUserDetailReq {
+message QueryMemberDetailReq {
   int64 id = 1;
 }
 
-message QuerySysUserDetailResp {
+message QueryMemberDetailResp {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -114,7 +114,7 @@ message QuerySysUserDetailResp {
 }
 
 // 分页查询用户列表
-message QueryPageSysUserListReq {
+message QueryPageMemberListReq {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -136,7 +136,7 @@ message QueryPageSysUserListReq {
   int64 page_size = 19; //每页的数量
 }
 
-message PageSysUserListData {
+message PageMemberListData {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -161,13 +161,13 @@ message PageSysUserListData {
   string update_by = 22; //最后更新该记录的用户标识符
 }
 
-message QueryPageSysUserListResp {
+message QueryPageMemberListResp {
   int64 total = 1;
-  repeated  PageSysUserListData list = 2;
+  repeated  PageMemberListData list = 2;
 }
 
 // 查询用户列表
-message QuerySysUserListReq {
+message QueryMemberListReq {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -187,7 +187,7 @@ message QuerySysUserListReq {
   int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
 }
 
-message SysUserListData {
+message MemberListData {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -212,25 +212,25 @@ message SysUserListData {
   string update_by = 22; //最后更新该记录的用户标识符
 }
 
-message QuerySysUserListResp {
-  repeated  SysUserListData list = 1;
+message QueryMemberListResp {
+  repeated  MemberListData list = 1;
 }
 
 // 用户
-service SysUserService {
+service MemberService {
   // 添加用户
-  rpc AddSysUser(AddSysUserReq) returns (AddSysUserResp){}
+  rpc AddMember(AddMemberReq) returns (AddMemberResp){}
   // 删除用户
-  rpc DeleteSysUser(DeleteSysUserReq) returns (DeleteSysUserResp){}
+  rpc DeleteMember(DeleteMemberReq) returns (DeleteMemberResp){}
   // 更新用户
-  rpc UpdateSysUser(UpdateSysUserReq) returns (UpdateSysUserResp){}
+  rpc UpdateMember(UpdateMemberReq) returns (UpdateMemberResp){}
   // 更新用户状态
-  rpc UpdateSysUserStatus(UpdateSysUserStatusReq) returns (UpdateSysUserStatusResp){}
+  rpc UpdateMemberStatus(UpdateMemberStatusReq) returns (UpdateMemberStatusResp){}
   // 查询用户详情
-  rpc QuerySysUserDetail(QuerySysUserDetailReq) returns (QuerySysUserDetailResp){}
+  rpc QueryMemberDetail(QueryMemberDetailReq) returns (QueryMemberDetailResp){}
   // 查询用户分页列表
-  rpc QueryPageSysUserList(QueryPageSysUserListReq) returns (QueryPageSysUserListResp){}
+  rpc QueryPageMemberList(QueryPageMemberListReq) returns (QueryPageMemberListResp){}
   // 查询用户所有列表
-  rpc QuerySysUserList(QuerySysUserListReq) returns (QuerySysUserListResp){}
+  rpc QueryMemberList(QueryMemberListReq) returns (QueryMemberListResp){}
 
 }

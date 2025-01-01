@@ -5,15 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1c29d04-dc98-4861-a7de-110ad443f257" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.backup/temp/SysUser.api" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.backup/temp/SysUser.proto" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/docker.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script/prometheus.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/type/type.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/type/type.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Docker.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="api" />
+        <option value="proto" />
+      </list>
+    </option>
   </component>
   <component name="GOROOT" url="file://$PROJECT_DIR$/../../Dev/DV/go" />
   <component name="Git.Settings">
@@ -22,10 +34,13 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/core/user/member/README.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2r0VYnszXAgxafNMsjB0PSqMH2g" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,7 +55,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/MyProjects/crucible_go/docs",
+    "last_opened_file_path": "E:/MyProjects/crucible_go/.backup/temp",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",

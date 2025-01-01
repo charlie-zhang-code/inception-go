@@ -1,12 +1,12 @@
 info(
     desc: "用户"
-    author: "时叶zshey"
+    author: "z_shey"
     email: "z_shey@163.com"
 )
 
 type (
     // 添加用户请求参数
-    AddSysUserReq {
+    AddMemberReq {
         Id int64 `json:"id"`                             //用户唯一标识符，主键
         Identify string `json:"identify"`                //用户的唯一标识符
         Username string `json:"username"`                //用户登录时使用的用户名
@@ -26,22 +26,22 @@ type (
         Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
-    AddSysUserResp {
+    AddMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 删除用户请求参数
-    DeleteSysUserReq {
+    DeleteMemberReq {
         Ids []int64 `form:"ids"`
     }
-    DeleteSysUserResp {
+    DeleteMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 更新用户请求参数
-    UpdateSysUserReq {
+    UpdateMemberReq {
         Id int64 `json:"id"`                             //用户唯一标识符，主键
         Identify string `json:"identify"`                //用户的唯一标识符
         Username string `json:"username"`                //用户登录时使用的用户名
@@ -61,25 +61,25 @@ type (
         Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
-    UpdateSysUserResp {
+    UpdateMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 更新用户状态请求参数
-    UpdateSysUserStatusReq {
+    UpdateMemberStatusReq {
         Status int32 `json:"status,default=2"` //状态，0表示禁用，1表示正常启用
     }
-    UpdateSysUserStatusResp {
+    UpdateMemberStatusResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 查询用户详情请求参数
-    QuerySysUserDetailReq {
+    QueryMemberDetailReq {
         Id int64 `form:"id"`
     }
-    QuerySysUserDetailData {
+    QueryMemberDetailData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
@@ -103,14 +103,14 @@ type (
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QuerySysUserDetailResp {
+    QueryMemberDetailResp {
         Code string `json:"code"`
         Message string `json:"message"`
-        Data QuerySysUserDetailData `json:"data"`
+        Data QueryMemberDetailData `json:"data"`
     }
 
         // 分页查询用户列表请求参数
-    QueryPageSysUserListReq {
+    QueryPageMemberListReq {
         Current int64 `form:"current,default=1"`         //第几页
         PageSize int64 `form:"pageSize,default=20"`      //每页的数量
         Id int64 `json:"id,optional"`                    //用户唯一标识符，主键
@@ -131,7 +131,7 @@ type (
         Status int32 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
         Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
-    QueryPageSysUserListData {
+    QueryPageMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
@@ -155,18 +155,18 @@ type (
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QueryPageSysUserListResp {
+    QueryPageMemberListResp {
         Code string `json:"code"`
         Message string `json:"message"`
         Current int64 `json:"current,default=1"`
-        Data []*QueryPageSysUserListData `json:"data"`
+        Data []*QueryPageMemberListData `json:"data"`
         PageSize int64 `json:"pageSize,default=20"`
         Success bool `json:"success"`
         Total int64 `json:"total"`
     }
 
         // 查询用户所有列表请求参数
-    QuerySysUserListReq {
+    QueryMemberListReq {
         Id int64 `json:"id,optional"`                    //用户唯一标识符，主键
         Identify string `json:"identify,optional"`       //用户的唯一标识符
         Username string `json:"username,optional"`       //用户登录时使用的用户名
@@ -185,7 +185,7 @@ type (
         Status int32 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
         Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
-    QuerySysUserListData {
+    QueryMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
@@ -209,44 +209,44 @@ type (
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QuerySysUserListResp {
+    QueryMemberListResp {
         Code string `json:"code"`
         Message string `json:"message"`
-        Data []*QuerySysUserListData `json:"data"`
+        Data []*QueryMemberListData `json:"data"`
         Success bool `json:"success"`
     }
 )
 
 @server(
-    group: demo/sys_user
-    prefix: /api/demo/sysUser
+    group: demo/member
+    prefix: /api/demo/member
 )
 service demo-api {
     // 添加用户
-    @handler AddSysUser
-    post /addSysUser (AddSysUserReq) returns (AddSysUserResp)
+    @handler AddMember
+    post /addMember (AddMemberReq) returns (AddMemberResp)
 
     // 删除用户
-    @handler DeleteSysUser
-    get /deleteSysUser (DeleteSysUserReq) returns (DeleteSysUserResp)
+    @handler DeleteMember
+    get /deleteMember (DeleteMemberReq) returns (DeleteMemberResp)
 
     // 更新用户
-    @handler UpdateSysUser
-    post /updateSysUser (UpdateSysUserReq) returns (UpdateSysUserResp)
+    @handler UpdateMember
+    post /updateMember (UpdateMemberReq) returns (UpdateMemberResp)
 
     // 更新用户状态
-    @handler UpdateSysUserStatus
-    post /updateSysUserStatus (UpdateSysUserStatusReq) returns (UpdateSysUserStatusResp)
+    @handler UpdateMemberStatus
+    post /updateMemberStatus (UpdateMemberStatusReq) returns (UpdateMemberStatusResp)
 
     // 查询用户详情
-    @handler QuerySysUserDetail
-    get /querySysUserDetail (QuerySysUserDetailReq) returns (QuerySysUserDetailResp)
+    @handler QueryMemberDetail
+    get /queryMemberDetail (QueryMemberDetailReq) returns (QueryMemberDetailResp)
 
     // 分页查询用户列表
-    @handler QueryPageSysUserList
-    get /queryPageSysUserList (QueryPageSysUserListReq) returns (QueryPageSysUserListResp)
+    @handler QueryPageMemberList
+    get /queryPageMemberList (QueryPageMemberListReq) returns (QueryPageMemberListResp)
 
     // 查询用户所有列表
-    @handler QuerySysUserList
-    get /querySysUserList (QuerySysUserListReq) returns (QuerySysUserListResp)
+    @handler QueryMemberList
+    get /queryMemberList (QueryMemberListReq) returns (QueryMemberListResp)
 }

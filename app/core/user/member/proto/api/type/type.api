@@ -2,7 +2,7 @@ syntax = "v1"
 
 type (
     // 添加用户请求参数
-    AddSysMemberReq {
+    AddMemberReq {
         Id int64 `json:"id"`                             //用户唯一标识符，主键
         Identify string `json:"identify"`                //用户的唯一标识符
         Username string `json:"username"`                //用户登录时使用的用户名
@@ -22,22 +22,22 @@ type (
         Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
-    AddSysMemberResp {
+    AddMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 删除用户请求参数
-    DeleteSysMemberReq {
+    DeleteMemberReq {
         Ids []int64 `form:"ids"`
     }
-    DeleteSysMemberResp {
+    DeleteMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 更新用户请求参数
-    UpdateSysMemberReq {
+    UpdateMemberReq {
         Id int64 `json:"id"`                             //用户唯一标识符，主键
         Identify string `json:"identify"`                //用户的唯一标识符
         Username string `json:"username"`                //用户登录时使用的用户名
@@ -57,29 +57,29 @@ type (
         Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
-    UpdateSysMemberResp {
+    UpdateMemberResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 更新用户状态请求参数
-    UpdateSysMemberStatusReq {
+    UpdateMemberStatusReq {
         Status int64 `json:"status,default=2"` //状态，0表示禁用，1表示正常启用
     }
-    UpdateSysMemberStatusResp {
+    UpdateMemberStatusResp {
         Code string `json:"code"`
         Message string `json:"message"`
     }
 
         // 查询用户详情请求参数
-    QuerySysMemberDetailReq {
+    QueryMemberDetailReq {
         Id int64 `form:"id"`
     }
-    QuerySysMemberDetailData {
+    QueryMemberDetailData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
-//        Password string `json:"password"`       //用户账户的密码，应存储加密后的值
+        Password string `json:"password"`       //用户账户的密码，应存储加密后的值
         Nickname string `json:"nickname"`       //用户在系统中显示的名字，可选
         Avatar string `json:"avatar"`           //用户头像的URL或路径
         Quote string `json:"quote"`             //用户设置的个人座右铭或签名
@@ -92,21 +92,21 @@ type (
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
         Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-//        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QuerySysMemberDetailResp {
+    QueryMemberDetailResp {
         Code string `json:"code"`
         Message string `json:"message"`
-        Data QuerySysMemberDetailData `json:"data"`
+        Data QueryMemberDetailData `json:"data"`
     }
 
         // 分页查询用户列表请求参数
-    QueryPageSysMemberListReq {
+    QueryPageMemberListReq {
         Current int64 `form:"current,default=1"`         //第几页
         PageSize int64 `form:"pageSize,default=20"`      //每页的数量
         Id int64 `json:"id,optional"`                    //用户唯一标识符，主键
@@ -127,7 +127,7 @@ type (
         Status int64 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
         Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
-    QueryPageSysMemberListData {
+    QueryPageMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
@@ -144,25 +144,25 @@ type (
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
         Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-        //        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QueryPageSysMemberListResp {
+    QueryPageMemberListResp {
         Code string `json:"code"`
         Message string `json:"message"`
         Current int64 `json:"current,default=1"`
-        Data []*QueryPageSysMemberListData `json:"data"`
+        Data []*QueryPageMemberListData `json:"data"`
         PageSize int64 `json:"pageSize,default=20"`
         Success bool `json:"success"`
         Total int64 `json:"total"`
     }
 
         // 查询用户所有列表请求参数
-    QuerySysMemberListReq {
+    QueryMemberListReq {
         Id int64 `json:"id,optional"`                    //用户唯一标识符，主键
         Identify string `json:"identify,optional"`       //用户的唯一标识符
         Username string `json:"username,optional"`       //用户登录时使用的用户名
@@ -181,7 +181,7 @@ type (
         Status int64 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
         Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
-    QuerySysMemberListData {
+    QueryMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
         Identify string `json:"identify"`       //用户的唯一标识符
         Username string `json:"username"`       //用户登录时使用的用户名
@@ -198,17 +198,17 @@ type (
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
         Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-        //        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符
         UpdateAt string `json:"updateAt"`       //记录最后更新的时间戳
         UpdateBy string `json:"updateBy"`       //最后更新该记录的用户标识符
     }
-    QuerySysMemberListResp {
+    QueryMemberListResp {
         Code string `json:"code"`
         Message string `json:"message"`
-        Data []*QuerySysMemberListData `json:"data"`
+        Data []*QueryMemberListData `json:"data"`
         Success bool `json:"success"`
     }
 )
