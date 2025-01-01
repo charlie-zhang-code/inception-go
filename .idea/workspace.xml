@@ -6,13 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="c1c29d04-dc98-4861-a7de-110ad443f257" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/auth/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/auth/go.mod" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/auth/proto/api/main.api" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/auth/proto/api/type/type.api" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysGroupModel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysGroupModel_gen.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberGroupModel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberGroupModel_gen.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberModel.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberModel_gen.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberRoleModel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberRoleModel_gen.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysRoleModel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysRoleModel_gen.go" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/vars.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/sql/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +36,7 @@
       <list>
         <option value="api" />
         <option value="proto" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -47,6 +60,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -55,7 +69,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/MyProjects/crucible_go/.backup/temp",
+    "last_opened_file_path": "E:/MyProjects/crucible_go/app/core/media",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -70,6 +84,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MyProjects\crucible_go\app\core\media" />
+      <recent name="E:\MyProjects\crucible_go\app\core\notification" />
+      <recent name="E:\MyProjects\crucible_go\app\core\user\group" />
       <recent name="E:\MyProjects\crucible_go\docs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

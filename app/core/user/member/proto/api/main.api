@@ -1,44 +1,43 @@
 info(
-    desc: "用户"
-    author: "时叶zshey"
-    email: "z_shey@163.com"
+	desc: "用户"
+	author: "时叶zshey"
+	email: "z_shey@163.com"
 )
 
 import (
-    "type/type.api"
+	"type/type.api"
 )
 
 @server(
-    //    group: demo/sys_member
-    prefix: /api/system/member
+	group: system/member
+	prefix: /api/system/member
 )
 service main {
-    // 添加用户
-    @handler AddMember
-    post /add (AddMemberReq) returns (AddMemberResp)
+	// 添加用户
+	@handler AddMember
+	post /add (AddMemberReq) returns (AddMemberResp)
 
-    // 删除用户
-    @handler DeleteMember
-    get /delete (DeleteMemberReq) returns (DeleteMemberResp)
+	// 删除用户
+	@handler DeleteMember
+	get /delete (DeleteMemberReq) returns (DeleteMemberResp)
 
-    // 更新用户
-    @handler UpdateMember
-    post /update (UpdateMemberReq) returns (UpdateMemberResp)
+	// 更新用户
+	@handler UpdateMember
+	post /update (UpdateMemberReq) returns (UpdateMemberResp)
 
-    // 更新用户状态
-    @handler UpdateMemberStatus
-    post /status (UpdateMemberStatusReq) returns (UpdateMemberStatusResp)
+	// 更新用户状态
+	@handler UpdateMemberStatus
+	post /status (UpdateMemberStatusReq) returns (UpdateMemberStatusResp)
 
-    // 查询用户详情
-    @handler QueryMemberDetail
-    get /detail (QueryMemberDetailReq) returns (QueryMemberDetailResp)
+	// 查询用户详情
+	@handler QueryMemberDetail
+	get /detail (QueryMemberDetailReq) returns (QueryMemberDetailResp)
 
-    // 分页查询用户列表
-    @handler QueryPageMemberList
-    get /pages (QueryPageMemberListReq) returns (QueryPageMemberListResp)
+	// 分页查询用户列表
+	@handler QueryPageMemberList
+	get /pages (QueryPageMemberListReq) returns (QueryPageMemberListResp)
 
-    // 查询用户所有列表
-    @handler QueryMemberList
-    get /list (QueryMemberListReq) returns (QueryMemberListResp)
+	// 查询用户所有列表
+	@handler QueryMemberList
+	get /list (QueryMemberListReq) returns (QueryMemberListResp)
 }
-

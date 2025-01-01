@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package main;
 
-option go_package = "./proto";
+option go_package = "./pb";
 
 // 添加用户
 message AddMemberReq {
@@ -14,22 +14,22 @@ message AddMemberReq {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   string remark = 18; //对记录的备注信息，如特殊说明等
   string create_at = 19; //记录创建的时间戳
   string create_by = 20; //创建该记录的用户标识符
 }
 
 message AddMemberResp {
-  int32 code = 1;
+  int64 code = 1;
   string message = 2;
 }
 
@@ -39,7 +39,7 @@ message DeleteMemberReq {
 }
 
 message DeleteMemberResp {
-  int32 code = 1;
+  int64 code = 1;
   string message = 2;
 }
 
@@ -53,33 +53,33 @@ message UpdateMemberReq {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   string remark = 18; //对记录的备注信息，如特殊说明等
   string update_at = 21; //记录最后更新的时间戳
   string update_by = 22; //最后更新该记录的用户标识符
 }
 
 message UpdateMemberResp {
-  int32 code = 1;
+  int64 code = 1;
   string message = 2;
 }
 
 // 更新用户状态
 message UpdateMemberStatusReq {
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
 
 }
 
 message UpdateMemberStatusResp {
-  int32 code = 1;
+  int64 code = 1;
   string message = 2;
 }
 
@@ -97,15 +97,15 @@ message QueryMemberDetailResp {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   string remark = 18; //对记录的备注信息，如特殊说明等
   string create_at = 19; //记录创建的时间戳
   string create_by = 20; //创建该记录的用户标识符
@@ -123,15 +123,15 @@ message QueryPageMemberListReq {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   int64 page_num = 18; //第几页
   int64 page_size = 19; //每页的数量
 }
@@ -145,15 +145,15 @@ message PageMemberListData {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   string remark = 18; //对记录的备注信息，如特殊说明等
   string create_at = 19; //记录创建的时间戳
   string create_by = 20; //创建该记录的用户标识符
@@ -176,15 +176,15 @@ message QueryMemberListReq {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
 }
 
 message MemberListData {
@@ -196,15 +196,15 @@ message MemberListData {
   string avatar = 6; //用户头像的URL或路径
   string quote = 7; //用户设置的个人座右铭或签名
   string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
   string login_at = 12; //用户最近一次登录的时间戳
   string login_ip = 13; //用户最近一次登录的IP地址
   string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
   string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
   string remark = 18; //对记录的备注信息，如特殊说明等
   string create_at = 19; //记录创建的时间戳
   string create_by = 20; //创建该记录的用户标识符
