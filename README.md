@@ -1,8 +1,6 @@
-# Crucible Go
+# Lilith
 
-某人半路使用 Go 重写的毕业设计💻.
-
-基于 `go` + `go-zero` + `gRPC` + `grom`, 以`微服务`方式实现的`ACM/ICPC`在线判题平台🖥️.
+基于 `go` + `go-zero` + `gRPC` + `grom`, 以`微服务`方式实现的系统框架🖥️.
 
 ## 🏠架构
 

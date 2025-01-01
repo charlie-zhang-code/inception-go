@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1c29d04-dc98-4861-a7de-110ad443f257" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/auth/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/auth/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/auth/proto/api/main.api" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/auth/proto/api/type/type.api" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysGroupModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysGroupModel_gen.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberGroupModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberGroupModel_gen.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberModel_gen.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberRoleModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysMemberRoleModel_gen.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysRoleModel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysRoleModel_gen.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/vars.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work" beforeDir="false" afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +52,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/MyProjects/crucible_go/app/core/media",
+    "last_opened_file_path": "E:/MyProjects/crucible_go/app/core/user/system",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -84,10 +67,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\MyProjects\crucible_go\app\core\media" />
-      <recent name="E:\MyProjects\crucible_go\app\core\notification" />
+      <recent name="E:\MyProjects\crucible_go\app\core\user\system" />
+      <recent name="E:\MyProjects\crucible_go\app\core\user\role" />
+      <recent name="E:\MyProjects\crucible_go\app\core\user\authn" />
+      <recent name="E:\MyProjects\crucible_go\app\core\user\authz" />
       <recent name="E:\MyProjects\crucible_go\app\core\user\group" />
-      <recent name="E:\MyProjects\crucible_go\docs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MyProjects\crucible_go\client" />
