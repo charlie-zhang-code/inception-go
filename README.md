@@ -19,19 +19,60 @@ crucible_go
 ├── go.work         # Go 工作区文件，用于将多个模块（即微服务）连接在一起
 ├─app
 │  ├─biz
+│  │  ├─admin
+│  │  ├─lilith
+│  │  └─oj
 │  ├─core
+│  │  ├─media
+│  │  │  ├─file
+│  │  │  ├─image
+│  │  │  └─video
+│  │  ├─notification
+│  │  │  ├─email
+│  │  │  └─message
 │  │  └─user
-│  │      ├─auth
-│  │      └─member
-│  │          ├─api
-│  │          ├─proto
-│  │          │  ├─api
-│  │          │  ├─model
-│  │          │  ├─rpc
-│  │          │  └─sql
-│  │          └─rpc
+│  │      ├─authn
+│  │      │  └─proto
+│  │      │      ├─api
+│  │      │      ├─rpc
+│  │      │      └─sql
+│  │      ├─authz
+│  │      │  └─proto
+│  │      │      ├─api
+│  │      │      ├─rpc
+│  │      │      └─sql
+│  │      ├─group
+│  │      │  └─proto
+│  │      │      ├─api
+│  │      │      ├─rpc
+│  │      │      └─sql
+│  │      ├─member
+│  │      │  └─proto
+│  │      │      ├─api
+│  │      │      │  └─type
+│  │      │      ├─rpc
+│  │      │      └─sql
+│  │      ├─role
+│  │      │  └─proto
+│  │      │      ├─api
+│  │      │      ├─rpc
+│  │      │      └─sql
+│  │      └─system
+│  │          └─proto
+│  │              ├─api
+│  │              ├─rpc
+│  │              └─sql
+│  ├─std
 │  └─unit
+├─client
+│  ├─flutter_admin
+│  ├─flutter_oj
+│  ├─ue_lilith
+│  ├─unity_lilith
+│  ├─web_admin
+│  └─web_oj
 ├─docs
+├─pkg
 └─script
 ```
 
