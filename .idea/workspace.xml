@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c1c29d04-dc98-4861-a7de-110ad443f257" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/etc/main.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/config/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/addsysuserhandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/deletesysuserhandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/querypagesysuserlisthandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/querysysuserdetailhandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/querysysuserlisthandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/routes.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/updatesysuserhandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/handler/updatesysuserstatushandler.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/addsysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/deletesysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/querypagesysuserlistlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/querysysuserdetaillogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/querysysuserlistlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/updatesysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/logic/updatesysuserstatuslogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/svc/servicecontext.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/internal/types/types.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/api/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/type/type.api" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysusermodel.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/sysusermodel_gen.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/model/vars.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/sql/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/sql/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/client/service/service.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/etc/main.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/config/config.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/addsysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/deletesysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/querypagesysuserlistlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/querysysuserdetaillogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/querysysuserlistlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/updatesysuserlogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/logic/service/updatesysuserstatuslogic.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/server/service/serviceserver.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/internal/svc/servicecontext.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/pb/main.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/rpc/pb/main_grpc.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.work.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/SysUser.api" beforeDir="false" afterPath="$PROJECT_DIR$/.backup/temp/SysUser.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/SysUser.proto" beforeDir="false" afterPath="$PROJECT_DIR$/.backup/temp/SysUser.proto" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../Dev/DV/go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/core/user/member/README.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2r0VYnszXAgxafNMsjB0PSqMH2g" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "git-widget-placeholder": "main",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "last_opened_file_path": "E:/MyProjects/crucible_go/docs",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MyProjects\crucible_go\docs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MyProjects\crucible_go\.backup" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-33c477a475b1-e0158606a674-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-241.19072.18" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-GO-241.19072.18" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

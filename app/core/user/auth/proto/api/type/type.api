@@ -1,0 +1,12 @@
+syntax = "v1"
+
+type Loginreq {
+    Username string `json:"username"`
+    Password string `json:"password"`
+}
+
+type JwtTokenresp {
+    AccessToken string `json:"access_token"`
+    AccessExpire int64 `json:"access_expire"`
+    RefreshAfter int64 `json:"refresh_after"`
+}

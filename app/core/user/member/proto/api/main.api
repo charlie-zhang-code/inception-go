@@ -1,9 +1,7 @@
 info (
-	title:   "user.member"
-	desc:    "用户"
-	author:  "时叶zshey"
-	email:   "z_shey@163.com"
-	version: "v1.0.0"
+	desc:   "用户"
+	author: "时叶zshey"
+	email:  "z_shey@163.com"
 )
 
 import (
@@ -11,36 +9,36 @@ import (
 )
 
 @server (
-	//      group:  demo/sys_user
-	prefix: /api/v1/user/member
+	//    group: demo/sys_member
+	prefix: /api/system/member
 )
 service main {
 	// 添加用户
-	@handler AddSysUser
-	post /addSysUser (AddSysUserReq) returns (AddSysUserResp)
+	@handler AddSysMember
+	post /addSysMember (AddSysMemberReq) returns (AddSysMemberResp)
 
 	// 删除用户
-	@handler DeleteSysUser
-	get /deleteSysUser (DeleteSysUserReq) returns (DeleteSysUserResp)
+	@handler DeleteSysMember
+	get /deleteSysMember (DeleteSysMemberReq) returns (DeleteSysMemberResp)
 
 	// 更新用户
-	@handler UpdateSysUser
-	post /updateSysUser (UpdateSysUserReq) returns (UpdateSysUserResp)
+	@handler UpdateSysMember
+	post /updateSysMember (UpdateSysMemberReq) returns (UpdateSysMemberResp)
 
 	// 更新用户状态
-	@handler UpdateSysUserStatus
-	post /updateSysUserStatus (UpdateSysUserStatusReq) returns (UpdateSysUserStatusResp)
+	@handler UpdateSysMemberStatus
+	post /updateSysMemberStatus (UpdateSysMemberStatusReq) returns (UpdateSysMemberStatusResp)
 
 	// 查询用户详情
-	@handler QuerySysUserDetail
-	get /querySysUserDetail (QuerySysUserDetailReq) returns (QuerySysUserDetailResp)
+	@handler QuerySysMemberDetail
+	get /querySysMemberDetail (QuerySysMemberDetailReq) returns (QuerySysMemberDetailResp)
 
 	// 分页查询用户列表
-	@handler QueryPageSysUserList
-	get /queryPageSysUserList (QueryPageSysUserListReq) returns (QueryPageSysUserListResp)
+	@handler QueryPageSysMemberList
+	get /queryPageSysMemberList (QueryPageSysMemberListReq) returns (QueryPageSysMemberListResp)
 
 	// 查询用户所有列表
-	@handler QuerySysUserList
-	get /querySysUserList (QuerySysUserListReq) returns (QuerySysUserListResp)
+	@handler QuerySysMemberList
+	get /querySysMemberList (QuerySysMemberListReq) returns (QuerySysMemberListResp)
 }
 

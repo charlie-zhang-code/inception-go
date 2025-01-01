@@ -16,40 +16,40 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodPost,
-				Path:    "/addSysUser",
-				Handler: AddSysUserHandler(serverCtx),
+				Path:    "/addSysMember",
+				Handler: AddSysMemberHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/deleteSysUser",
-				Handler: DeleteSysUserHandler(serverCtx),
+				Path:    "/deleteSysMember",
+				Handler: DeleteSysMemberHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/queryPageSysUserList",
-				Handler: QueryPageSysUserListHandler(serverCtx),
+				Path:    "/queryPageSysMemberList",
+				Handler: QueryPageSysMemberListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/querySysUserDetail",
-				Handler: QuerySysUserDetailHandler(serverCtx),
+				Path:    "/querySysMemberDetail",
+				Handler: QuerySysMemberDetailHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodGet,
-				Path:    "/querySysUserList",
-				Handler: QuerySysUserListHandler(serverCtx),
+				Path:    "/querySysMemberList",
+				Handler: QuerySysMemberListHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/updateSysUser",
-				Handler: UpdateSysUserHandler(serverCtx),
+				Path:    "/updateSysMember",
+				Handler: UpdateSysMemberHandler(serverCtx),
 			},
 			{
 				Method:  http.MethodPost,
-				Path:    "/updateSysUserStatus",
-				Handler: UpdateSysUserStatusHandler(serverCtx),
+				Path:    "/updateSysMemberStatus",
+				Handler: UpdateSysMemberStatusHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/api/v1/user/member"),
+		rest.WithPrefix("/api/system/member"),
 	)
 }

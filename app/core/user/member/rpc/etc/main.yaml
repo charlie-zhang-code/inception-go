@@ -1,14 +1,26 @@
-Name: main.rpc
-ListenOn: 127.0.0.1:8080
-Etcd:
-  Hosts:
-  - 127.0.0.1:2379
-  Key: main.rpc
+Name: user.member.rpc
+ListenOn: 127.0.0.1:8098
+#Etcd:
+#  Hosts:
+#    - 127.0.0.1:2379
+#  Key: user.member.rpc
 
-Mysql:
-  DataSource: root:123456@tcp(mysql:3306)/crucible_go?charset=utf8mb4&parseTime=true&loc=Asia%2FShanghai
+# mysql: 参数必带
+DataSource: root:123456@tcp(127.0.0.1:3306)/crucible_go?parseTime=true
 
-#CacheRedis:
-#  - Host: redis:6379
-#    Type: node
-#    Pass:
+## cache:
+#Cache:
+#  - Host: 127.0.0.1:6379 # redis endpoint
+#  - Tls: false # 是否使用 TLS, 默认 false
+
+
+# 替代 etcd:
+Consul:
+  Host: 127.0.0.1:8500 # consul endpoint
+#  Token: 'f0512db6-76d6-f25e-f344-a98cc3484d42' # consul ACL token (optional)
+  Key: user.member.rpc
+  Meta:
+    Protocol: grpc
+  Tag:
+    - user.member
+    - rpc
