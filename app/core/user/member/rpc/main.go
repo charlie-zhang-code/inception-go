@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
 
-	"authn/rpc/internal/config"
-	authenticationserviceServer "authn/rpc/internal/server/authenticationservice"
-	"authn/rpc/internal/svc"
-	"authn/rpc/pb"
+	"member/rpc/internal/config"
+	"member/rpc/internal/server"
+	"member/rpc/internal/svc"
+	"member/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -27,7 +27,7 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		pb.RegisterAuthenticationServiceServer(grpcServer, authenticationserviceServer.NewAuthenticationServiceServer(ctx))
+		pb.RegisterServiceServer(grpcServer, server.NewServiceServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)
@@ -35,7 +35,6 @@ func main() {
 	})
 	defer s.Stop()
 
-	// register service to consul
 	_ = consul.RegisterService(c.ListenOn, c.Consul)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)

@@ -1,10 +1,10 @@
 package svc
 
 import (
-	"authn/rpc/internal/config"
 	"github.com/zeromicro/go-zero/core/stores/redis"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"member/rpc/internal/config"
 	"time"
 )
 
@@ -29,9 +29,10 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		NonBlock:    false,
 		PingTimeout: 0,
 	})
+
 	return &ServiceContext{
 		Config: c,
-		Cache:  cache,
 		DB:     db,
+		Cache:  cache,
 	}
 }

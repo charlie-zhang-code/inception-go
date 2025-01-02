@@ -8,7 +8,13 @@ import (
 
 type Config struct {
 	zrpc.RpcServerConf
-	Cache redis.RedisConf
+
+	Consul consul.Conf
+
+	JwtAuth struct {
+		AccessSecret string
+		AccessExpire int64
+	}
 
 	MySQL struct {
 		DataSource   string
@@ -17,10 +23,9 @@ type Config struct {
 		MaxLifetime  int `json:",default=3600"`
 	}
 
-	JwtAuth struct {
-		AccessSecret string
-		AccessExpire int64
-	}
+	Cache redis.RedisConf
 
-	Consul consul.Conf
+	Default struct {
+		Password string
+	}
 }

@@ -5,7 +5,7 @@ info(
 )
 
 import (
-	"type/type.api"
+	"type.api"
 )
 
 @server(

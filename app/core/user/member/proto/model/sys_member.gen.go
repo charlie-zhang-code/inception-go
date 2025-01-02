@@ -12,28 +12,24 @@ const TableNameSysMember = "sys_member"
 
 // SysMember 用户表
 type SysMember struct {
-	ID          int64     `gorm:"column:id;primaryKey;autoIncrement:true;comment:用户唯一标识符，主键" json:"id"`                   // 用户唯一标识符，主键
-	Identify    string    `gorm:"column:identify;not null;comment:用户的唯一标识符" json:"identify"`                              // 用户的唯一标识符
-	Username    string    `gorm:"column:username;not null;comment:用户登录时使用的用户名" json:"username"`                           // 用户登录时使用的用户名
-	Password    string    `gorm:"column:password;not null;comment:用户账户的密码，应存储加密后的值" json:"password"`                      // 用户账户的密码，应存储加密后的值
-	Nickname    string    `gorm:"column:nickname;comment:用户在系统中显示的名字，可选" json:"nickname"`                                 // 用户在系统中显示的名字，可选
-	Avatar      string    `gorm:"column:avatar;comment:用户头像的URL或路径" json:"avatar"`                                        // 用户头像的URL或路径
-	Quote       string    `gorm:"column:quote;comment:用户设置的个人座右铭或签名" json:"quote"`                                        // 用户设置的个人座右铭或签名
-	Birthday    time.Time `gorm:"column:birthday;default:1970-01-01 00:00:01;comment:用户的出生日期，用于个性化服务或统计" json:"birthday"` // 用户的出生日期，用于个性化服务或统计
-	Gender      int32     `gorm:"column:gender;comment:用户的性别，0表示保密，1表示男性，2表示女性" json:"gender"`                            // 用户的性别，0表示保密，1表示男性，2表示女性
-	Email       string    `gorm:"column:email;comment:用户的电子邮件地址，可用于找回密码或接收通知" json:"email"`                               // 用户的电子邮件地址，可用于找回密码或接收通知
-	Telephone   string    `gorm:"column:telephone;comment:用户的联系电话，可用于身份验证或联系用户" json:"telephone"`                         // 用户的联系电话，可用于身份验证或联系用户
-	LoginAt     time.Time `gorm:"column:login_at;default:CURRENT_TIMESTAMP;comment:用户最近一次登录的时间戳" json:"login_at"`         // 用户最近一次登录的时间戳
-	LoginIP     string    `gorm:"column:login_ip;comment:用户最近一次登录的IP地址" json:"login_ip"`                                  // 用户最近一次登录的IP地址
-	LoginRegion string    `gorm:"column:login_region;comment:用户最近一次登录的IP地址所属的地理位置" json:"login_region"`                   // 用户最近一次登录的IP地址所属的地理位置
-	LoginOs     string    `gorm:"column:login_os;comment:用户最近一次登录的操作系统" json:"login_os"`                                  // 用户最近一次登录的操作系统
-	Status      int32     `gorm:"column:status;default:1;comment:状态，0表示禁用，1表示正常启用" json:"status"`                         // 状态，0表示禁用，1表示正常启用
-	Deleted     int32     `gorm:"column:deleted;comment:逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复" json:"deleted"`                      // 逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-	Remark      string    `gorm:"column:remark;comment:对记录的备注信息，如特殊说明等" json:"remark"`                                    // 对记录的备注信息，如特殊说明等
-	CreateAt    time.Time `gorm:"column:create_at;default:CURRENT_TIMESTAMP;comment:记录创建的时间戳" json:"create_at"`           // 记录创建的时间戳
-	CreateBy    string    `gorm:"column:create_by;comment:创建该记录的用户标识符" json:"create_by"`                                  // 创建该记录的用户标识符
-	UpdateAt    time.Time `gorm:"column:update_at;default:CURRENT_TIMESTAMP;comment:记录最后更新的时间戳" json:"update_at"`         // 记录最后更新的时间戳
-	UpdateBy    string    `gorm:"column:update_by;comment:最后更新该记录的用户标识符" json:"update_by"`                                // 最后更新该记录的用户标识符
+	ID        int64     `gorm:"column:id;primaryKey;autoIncrement:true;comment:用户唯一标识符，主键" json:"id"`           // 用户唯一标识符，主键
+	Identify  string    `gorm:"column:identify;not null;comment:用户的唯一标识符" json:"identify"`                      // 用户的唯一标识符
+	Username  string    `gorm:"column:username;not null;comment:用户登录时使用的用户名" json:"username"`                   // 用户登录时使用的用户名
+	Password  string    `gorm:"column:password;not null;comment:用户账户的密码，应存储加密后的值" json:"password"`              // 用户账户的密码，应存储加密后的值
+	Nickname  string    `gorm:"column:nickname;comment:用户在系统中显示的名字，可选" json:"nickname"`                         // 用户在系统中显示的名字，可选
+	Avatar    string    `gorm:"column:avatar;comment:用户头像的URL或路径" json:"avatar"`                                // 用户头像的URL或路径
+	Quote     string    `gorm:"column:quote;comment:用户设置的个人座右铭或签名" json:"quote"`                                // 用户设置的个人座右铭或签名
+	Birthday  time.Time `gorm:"column:birthday;default:1970-01-01;comment:用户的出生日期，用于个性化服务或统计" json:"birthday"`  // 用户的出生日期，用于个性化服务或统计
+	Gender    int32     `gorm:"column:gender;comment:用户的性别，0表示保密，1表示男性，2表示女性" json:"gender"`                    // 用户的性别，0表示保密，1表示男性，2表示女性
+	Email     string    `gorm:"column:email;comment:用户的电子邮件地址，可用于找回密码或接收通知" json:"email"`                       // 用户的电子邮件地址，可用于找回密码或接收通知
+	Telephone string    `gorm:"column:telephone;comment:用户的联系电话，可用于身份验证或联系用户" json:"telephone"`                 // 用户的联系电话，可用于身份验证或联系用户
+	Status    int32     `gorm:"column:status;default:1;comment:状态，0表示禁用，1表示正常启用" json:"status"`                 // 状态，0表示禁用，1表示正常启用
+	Deleted   int32     `gorm:"column:deleted;comment:逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复" json:"deleted"`              // 逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+	Remark    string    `gorm:"column:remark;comment:对记录的备注信息，如特殊说明等" json:"remark"`                            // 对记录的备注信息，如特殊说明等
+	CreateAt  time.Time `gorm:"column:create_at;default:CURRENT_TIMESTAMP;comment:记录创建的时间戳" json:"create_at"`   // 记录创建的时间戳
+	CreateBy  string    `gorm:"column:create_by;comment:创建该记录的用户标识符" json:"create_by"`                          // 创建该记录的用户标识符
+	UpdateAt  time.Time `gorm:"column:update_at;default:CURRENT_TIMESTAMP;comment:记录最后更新的时间戳" json:"update_at"` // 记录最后更新的时间戳
+	UpdateBy  string    `gorm:"column:update_by;comment:最后更新该记录的用户标识符" json:"update_by"`                        // 最后更新该记录的用户标识符
 }
 
 // TableName SysMember's table name

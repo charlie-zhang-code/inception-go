@@ -10,16 +10,16 @@ type (
         Nickname string `json:"nickname,optional"`       //用户在系统中显示的名字，可选
         Avatar string `json:"avatar,optional"`           //用户头像的URL或路径
         Quote string `json:"quote,optional"`             //用户设置的个人座右铭或签名
-        Birthday string `json:"birthday,optional"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Birthday time.Time `json:"birthday,optional"`    //用户的出生日期，用于个性化服务或统计
+        Gender int32 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email,optional"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone,optional"`     //用户的联系电话，可用于身份验证或联系用户
-        LoginAt string `json:"loginAt,optional"`         //用户最近一次登录的时间戳
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status,optional"`            //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status,optional"`            //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
     AddMemberResp {
@@ -45,16 +45,16 @@ type (
         Nickname string `json:"nickname,optional"`       //用户在系统中显示的名字，可选
         Avatar string `json:"avatar,optional"`           //用户头像的URL或路径
         Quote string `json:"quote,optional"`             //用户设置的个人座右铭或签名
-        Birthday string `json:"birthday,optional"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Birthday time.Time `json:"birthday,optional"`    //用户的出生日期，用于个性化服务或统计
+        Gender int32 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email,optional"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone,optional"`     //用户的联系电话，可用于身份验证或联系用户
-        LoginAt string `json:"loginAt,optional"`         //用户最近一次登录的时间戳
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status,optional"`            //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status,optional"`            //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark,optional"`           //对记录的备注信息，如特殊说明等
     }
     UpdateMemberResp {
@@ -64,7 +64,7 @@ type (
 
         // 更新用户状态请求参数
     UpdateMemberStatusReq {
-        Status int64 `json:"status,default=2"` //状态，0表示禁用，1表示正常启用
+        Status int32 `json:"status,default=2"` //状态，0表示禁用，1表示正常启用
     }
     UpdateMemberStatusResp {
         Code string `json:"code"`
@@ -84,15 +84,15 @@ type (
         Avatar string `json:"avatar"`           //用户头像的URL或路径
         Quote string `json:"quote"`             //用户设置的个人座右铭或签名
         Birthday string `json:"birthday"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Gender int32 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone"`     //用户的联系电话，可用于身份验证或联系用户
         LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status"`            //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符
@@ -116,16 +116,16 @@ type (
         Nickname string `json:"nickname,optional"`       //用户在系统中显示的名字，可选
         Avatar string `json:"avatar,optional"`           //用户头像的URL或路径
         Quote string `json:"quote,optional"`             //用户设置的个人座右铭或签名
-        Birthday string `json:"birthday,optional"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Birthday time.Time `json:"birthday,optional"`    //用户的出生日期，用于个性化服务或统计
+        Gender int32 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email,optional"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone,optional"`     //用户的联系电话，可用于身份验证或联系用户
-        LoginAt string `json:"loginAt,optional"`         //用户最近一次登录的时间戳
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
     QueryPageMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
@@ -136,15 +136,15 @@ type (
         Avatar string `json:"avatar"`           //用户头像的URL或路径
         Quote string `json:"quote"`             //用户设置的个人座右铭或签名
         Birthday string `json:"birthday"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Gender int32 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone"`     //用户的联系电话，可用于身份验证或联系用户
         LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status"`            //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符
@@ -170,16 +170,16 @@ type (
         Nickname string `json:"nickname,optional"`       //用户在系统中显示的名字，可选
         Avatar string `json:"avatar,optional"`           //用户头像的URL或路径
         Quote string `json:"quote,optional"`             //用户设置的个人座右铭或签名
-        Birthday string `json:"birthday,optional"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Birthday time.Time `json:"birthday,optional"`    //用户的出生日期，用于个性化服务或统计
+        Gender int32 `json:"gender,optional"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email,optional"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone,optional"`     //用户的联系电话，可用于身份验证或联系用户
-        LoginAt string `json:"loginAt,optional"`         //用户最近一次登录的时间戳
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status,default=2"`           //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted,optional"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
     }
     QueryMemberListData {
         Id int64 `json:"id"`                    //用户唯一标识符，主键
@@ -190,15 +190,15 @@ type (
         Avatar string `json:"avatar"`           //用户头像的URL或路径
         Quote string `json:"quote"`             //用户设置的个人座右铭或签名
         Birthday string `json:"birthday"`       //用户的出生日期，用于个性化服务或统计
-        Gender int64 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
+        Gender int32 `json:"gender"`            //用户的性别，0表示保密，1表示男性，2表示女性
         Email string `json:"email"`             //用户的电子邮件地址，可用于找回密码或接收通知
         Telephone string `json:"telephone"`     //用户的联系电话，可用于身份验证或联系用户
         LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
         LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
         LoginRegion string `json:"loginRegion"` //用户最近一次登录的IP地址所属的地理位置
         LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
-        Status int64 `json:"status"`            //状态，0表示禁用，1表示正常启用
-        Deleted int64 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+        Status int32 `json:"status"`            //状态，0表示禁用，1表示正常启用
+        Deleted int32 `json:"deleted"`          //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
         Remark string `json:"remark"`           //对记录的备注信息，如特殊说明等
         CreateAt string `json:"createAt"`       //记录创建的时间戳
         CreateBy string `json:"createBy"`       //创建该记录的用户标识符

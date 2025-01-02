@@ -1,4 +1,4 @@
-USE crucible_go;
+USE inception;
 
 -- ----------------------------
 -- 角色表
