@@ -232,5 +232,4 @@ service MemberService {
   rpc QueryPageMemberList(QueryPageMemberListReq) returns (QueryPageMemberListResp){}
   // 查询用户所有列表
   rpc QueryMemberList(QueryMemberListReq) returns (QueryMemberListResp){}
-
 }

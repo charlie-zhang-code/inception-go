@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c1c29d04-dc98-4861-a7de-110ad443f257" name="Changes" comment="">
+    <list default="true" id="3b1baf98-d9a5-410b-b25d-7c364c8ee426" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/crucible_go.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367/storage_v2/_src_/schema/crucible_go.GBZLrA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dbd2cfb4-9888-43fe-b476-5ef482b4c8cb.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/plugin.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/authn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/authn/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.sum" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/go.work" beforeDir="false" afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.work.sum" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +36,8 @@
         <option value="api" />
         <option value="proto" />
         <option value="Go File" />
+        <option value="Api Template" />
+        <option value="Proto Template" />
       </list>
     </option>
   </component>
@@ -27,13 +45,11 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/core/user/member/README.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2r0VYnszXAgxafNMsjB0PSqMH2g" />
+  <component name="ProjectId" id="2r1ZJxYjmWl5wXEjxe27B1Hi3tF" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
@@ -43,7 +59,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultApiTemplateProperty": "Api Template",
     "DefaultGoTemplateProperty": "Go File",
+    "DefaultProtoTemplateProperty": "Proto Template",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -52,30 +70,20 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/MyProjects/crucible_go/app/core/user/system",
+    "last_opened_file_path": "E:/MyProjects/lilith/.backup",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "nodejs_package_manager_path": "npm"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
-      "mysql",
-      "redis"
+      "mysql"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\MyProjects\crucible_go\app\core\user\system" />
-      <recent name="E:\MyProjects\crucible_go\app\core\user\role" />
-      <recent name="E:\MyProjects\crucible_go\app\core\user\authn" />
-      <recent name="E:\MyProjects\crucible_go\app\core\user\authz" />
-      <recent name="E:\MyProjects\crucible_go\app\core\user\group" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\MyProjects\crucible_go\client" />
-      <recent name="E:\MyProjects\crucible_go\.backup" />
+      <recent name="E:\MyProjects\lilith\.backup" />
     </key>
   </component>
   <component name="SharedIndexes">

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/crucible_go.iml" filepath="$PROJECT_DIR$/.idea/crucible_go.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lilith.iml" filepath="$PROJECT_DIR$/.idea/lilith.iml" />
     </modules>
   </component>
 </project>

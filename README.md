@@ -85,3 +85,8 @@ crucible_go
 ### 文献
 
 - ...
+
+
+```bash
+go work sync
+```

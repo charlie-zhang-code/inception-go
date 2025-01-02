@@ -3,11 +3,11 @@
   <component name="DataSetting">
     <option name="dbConfig">
       <DbParam>
-        <option name="apiPath" value="$PROJECT_DIR$/.backup/temp" />
-        <option name="author" value="z_shey" />
+        <option name="apiPath" value="$PROJECT_DIR$/app/core/user/member/proto/desc" />
+        <option name="author" value="zshey" />
         <option name="email" value="z_shey@163.com" />
         <option name="prefix" value="sys_" />
-        <option name="protoPath" value="$PROJECT_DIR$/.backup/temp" />
+        <option name="protoPath" value="$PROJECT_DIR$/app/core/user/member/proto/desc" />
       </DbParam>
     </option>
   </component>

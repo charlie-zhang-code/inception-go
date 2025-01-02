@@ -9,8 +9,8 @@ import (
 )
 
 @server(
-	group: system/member
-	prefix: /api/system/member
+	group: user/member
+	prefix: /api/user/member
 )
 service main {
 	// 添加用户
