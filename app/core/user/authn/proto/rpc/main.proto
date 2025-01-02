@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./pb";
+
+message UsernamePasswordTokenReq {
+  string username = 1; //用户登录时使用的用户名
+  string password = 2; //用户账户的密码，应存储加密后的值
+}
+
+message UsernamePasswordTokenResp {
+  string access_token = 1;
+  string access_expire = 2;
+  string refresh_after = 3;
+}
+
+service AuthenticationService {
+  // 通过用户名密码获取token
+  rpc UsernamePasswordToken(UsernamePasswordTokenReq) returns (UsernamePasswordTokenResp);
+}

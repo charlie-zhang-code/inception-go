@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3b1baf98-d9a5-410b-b25d-7c364c8ee426" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/crucible_go.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24dc8220-ebdb-4d3c-a0b4-61328858c367/storage_v2/_src_/schema/crucible_go.GBZLrA.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dbd2cfb4-9888-43fe-b476-5ef482b4c8cb.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/authn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/authn/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/api/main.api" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/user/member/proto/rpc/main.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.work" beforeDir="false" afterPath="$PROJECT_DIR$/go.work" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.work.sum" beforeDir="false" />
-    </list>
+    <list default="true" id="3b1baf98-d9a5-410b-b25d-7c364c8ee426" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

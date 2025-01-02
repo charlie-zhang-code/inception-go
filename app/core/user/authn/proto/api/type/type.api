@@ -1,0 +1,12 @@
+syntax = "v1"
+
+type (
+    LoginReq {
+
+    }
+
+    LoginResp {
+
+    }
+)
+
