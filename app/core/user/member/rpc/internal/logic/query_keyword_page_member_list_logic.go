@@ -38,7 +38,12 @@ func (l *QueryKeywordPageMemberListLogic) QueryKeywordPageMemberList(in *pb.Quer
 	}
 
 	keyword := "%" + in.Keyword + "%"
-	err = db.Where("nickname LIKE ? OR email LIKE ?", keyword, keyword).Where("deleted = ?", 0).Limit(int(in.PageSize)).Offset(int(in.PageSize * (in.PageNum - 1))).Find(&resultList).Error
+	err = db.
+		Where("deleted = ?", 0).
+		Where("nickname LIKE ? OR email LIKE ? OR telephone LIKE ?", keyword, keyword, keyword).
+		Limit(int(in.PageSize)).
+		Offset(int(in.PageSize * (in.PageNum - 1))).
+		Find(&resultList).Error
 
 	result := &pb.QueryKeywordPageMemberListResp{
 		List:  make([]*pb.KeywordPageMemberListData, 0, len(resultList)),

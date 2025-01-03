@@ -32,7 +32,10 @@ func (l *QueryPageMemberListLogic) QueryPageMemberList(in *pb.QueryPageMemberLis
 	var resultList []model.SysMember
 	var total int64
 	err := db.Count(&total).Error
-	err = db.Where("deleted = ?", 0).Limit(int(in.PageSize)).Offset(int(in.PageSize * (in.PageNum - 1))).Find(&resultList).Error
+	err = db.Where("deleted = ?", 0).
+		Limit(int(in.PageSize)).
+		Offset(int(in.PageSize * (in.PageNum - 1))).
+		Find(&resultList).Error
 
 	result := &pb.QueryPageMemberListResp{
 		List:  make([]*pb.PageMemberListData, 0, len(resultList)),

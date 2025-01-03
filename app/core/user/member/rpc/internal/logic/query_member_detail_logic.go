@@ -30,7 +30,8 @@ func NewQueryMemberDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 func (l *QueryMemberDetailLogic) QueryMemberDetail(in *pb.QueryMemberDetailReq) (*pb.QueryMemberDetailResp, error) {
 	var sysMember model.SysMember
 	result := &pb.QueryMemberDetailResp{}
-	err := l.svcCtx.DB.Where("id = ?", in.Id).First(&sysMember).Error
+	err := l.svcCtx.DB.Where("id = ?", in.Id).
+		First(&sysMember).Error
 
 	err = copier.Copy(result, &sysMember)
 

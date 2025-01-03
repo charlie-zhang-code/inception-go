@@ -31,7 +31,10 @@ func (l *DeleteMemberLogic) DeleteMember(in *pb.DeleteMemberReq) (*pb.DeleteMemb
 		if len(in.Ids) == 0 {
 			return fmt.Errorf("no IDs provided for soft deletion")
 		}
-		if err := tx.Model(&model.SysMember{}).Where("id IN (?)", in.Ids).UpdateColumn("deleted", 1).Error; err != nil {
+		// 软删除
+		if err := tx.Model(&model.SysMember{}).
+			Where("id IN (?)", in.Ids).
+			UpdateColumn("deleted", 1).Error; err != nil {
 			return err
 		}
 		return nil

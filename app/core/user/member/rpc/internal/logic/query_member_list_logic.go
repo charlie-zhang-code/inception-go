@@ -2,6 +2,9 @@ package logic
 
 import (
 	"context"
+	"convert/field"
+	"github.com/jinzhu/copier"
+	"member/proto/model"
 
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
@@ -25,7 +28,30 @@ func NewQueryMemberListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Q
 
 // 查询用户所有列表
 func (l *QueryMemberListLogic) QueryMemberList(in *pb.QueryMemberListReq) (*pb.QueryMemberListResp, error) {
-	// todo: add your logic here and delete this line
+	db := l.svcCtx.DB.Model(&model.SysMember{})
 
-	return &pb.QueryMemberListResp{}, nil
+	var resultList []model.SysMember
+
+	err := db.
+		Where("deleted = ?", 0).
+		Find(&resultList).Error
+
+	result := &pb.QueryMemberListResp{
+		List: make([]*pb.MemberListData, 0, len(resultList)),
+	}
+
+	for _, item := range resultList {
+		res := &pb.MemberListData{}
+		if err := copier.Copy(res, &item); err != nil {
+			return nil, err
+		}
+
+		if err := field.TimeFields(&item, res); err != nil {
+			return nil, err
+		}
+
+		result.List = append(result.List, res)
+	}
+
+	return result, err
 }

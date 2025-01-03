@@ -33,7 +33,10 @@ func (l *QueryKeywordMemberListLogic) QueryKeywordMemberList(in *pb.QueryKeyword
 	var resultList []model.SysMember
 
 	keyword := "%" + in.Keyword + "%"
-	err := db.Where("nickname LIKE ? OR email LIKE ?", keyword, keyword).Where("deleted = ?", 0).Find(&resultList).Error
+	err := db.
+		Where("deleted = ?", 0).
+		Where("nickname LIKE ? OR email LIKE ? OR telephone LIKE ?", keyword, keyword, keyword).
+		Find(&resultList).Error
 
 	result := &pb.QueryKeywordMemberListResp{
 		List: make([]*pb.KeywordMemberListData, 0, len(resultList)),
