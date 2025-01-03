@@ -25,4 +25,7 @@ service Service {
   rpc QueryUsernamePasswordToken(UsernamePasswordTokenReq) returns (TokenResp);
   // 刷新令牌
   rpc QueryRefreshToken(RefreshTokenReq) returns (TokenResp);
+  // 校验Token
+
+  // 根据Token获取用户的ID
 }

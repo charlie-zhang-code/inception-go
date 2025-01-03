@@ -1,0 +1,172 @@
+info(
+    desc: "用户登录状态"
+    author: "z_shey"
+    email: "z_shey@163.com"
+)
+
+type (
+    // 添加用户登录状态请求参数
+    AddMemberLoginStatusReq {
+        Id int64 `json:"id"`                             //主键，自增
+        MemberId int64 `json:"memberId"`                 //用户唯一标识符，外键关联用户表
+        Client string `json:"client,optional"`           //客户端
+        LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
+        LogoutAt time.Time `json:"logoutAt,optional"`    //用户最近一次登出的时间戳
+    }
+    AddMemberLoginStatusResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+
+        // 删除用户登录状态请求参数
+    DeleteMemberLoginStatusReq {
+        Ids []int64 `form:"ids"`
+    }
+    DeleteMemberLoginStatusResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+
+        // 更新用户登录状态请求参数
+    UpdateMemberLoginStatusReq {
+        Id int64 `json:"id"`                             //主键，自增
+        MemberId int64 `json:"memberId"`                 //用户唯一标识符，外键关联用户表
+        Client string `json:"client,optional"`           //客户端
+        LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
+        LogoutAt time.Time `json:"logoutAt,optional"`    //用户最近一次登出的时间戳
+    }
+    UpdateMemberLoginStatusResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+
+        // 更新用户登录状态状态请求参数
+    UpdateMemberLoginStatusStatusReq {
+
+    }
+    UpdateMemberLoginStatusStatusResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+    }
+
+        // 查询用户登录状态详情请求参数
+    QueryMemberLoginStatusDetailReq {
+        Id int64 `form:"id"`
+    }
+    QueryMemberLoginStatusDetailData {
+        Id int64 `json:"id"`                    //主键，自增
+        MemberId int64 `json:"memberId"`        //用户唯一标识符，外键关联用户表
+        Client string `json:"client"`           //客户端
+        LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
+        LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
+        LogoutAt string `json:"logoutAt"`       //用户最近一次登出的时间戳
+    }
+    QueryMemberLoginStatusDetailResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Data QueryMemberLoginStatusDetailData `json:"data"`
+    }
+
+        // 分页查询用户登录状态列表请求参数
+    QueryPageMemberLoginStatusListReq {
+        Current int64 `form:"current,default=1"`         //第几页
+        PageSize int64 `form:"pageSize,default=20"`      //每页的数量
+        Id int64 `json:"id,optional"`                    //主键，自增
+        MemberId int64 `json:"memberId,optional"`        //用户唯一标识符，外键关联用户表
+        Client string `json:"client,optional"`           //客户端
+        LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
+        LogoutAt time.Time `json:"logoutAt,optional"`    //用户最近一次登出的时间戳
+    }
+    QueryPageMemberLoginStatusListData {
+        Id int64 `json:"id"`                    //主键，自增
+        MemberId int64 `json:"memberId"`        //用户唯一标识符，外键关联用户表
+        Client string `json:"client"`           //客户端
+        LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
+        LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
+        LogoutAt string `json:"logoutAt"`       //用户最近一次登出的时间戳
+    }
+    QueryPageMemberLoginStatusListResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Current int64 `json:"current,default=1"`
+        Data []*QueryPageMemberLoginStatusListData `json:"data"`
+        PageSize int64 `json:"pageSize,default=20"`
+        Success bool `json:"success"`
+        Total int64 `json:"total"`
+    }
+
+        // 查询用户登录状态所有列表请求参数
+    QueryMemberLoginStatusListReq {
+        Id int64 `json:"id,optional"`                    //主键，自增
+        MemberId int64 `json:"memberId,optional"`        //用户唯一标识符，外键关联用户表
+        Client string `json:"client,optional"`           //客户端
+        LoginIp string `json:"loginIp,optional"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion,optional"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs,optional"`         //用户最近一次登录的操作系统
+        LoginAt time.Time `json:"loginAt,optional"`      //用户最近一次登录的时间戳
+        LogoutAt time.Time `json:"logoutAt,optional"`    //用户最近一次登出的时间戳
+    }
+    QueryMemberLoginStatusListData {
+        Id int64 `json:"id"`                    //主键，自增
+        MemberId int64 `json:"memberId"`        //用户唯一标识符，外键关联用户表
+        Client string `json:"client"`           //客户端
+        LoginIp string `json:"loginIp"`         //用户最近一次登录的IP地址
+        LoginRegion string `json:"loginRegion"` //用户最近一次登录的地理位置
+        LoginOs string `json:"loginOs"`         //用户最近一次登录的操作系统
+        LoginAt string `json:"loginAt"`         //用户最近一次登录的时间戳
+        LogoutAt string `json:"logoutAt"`       //用户最近一次登出的时间戳
+    }
+    QueryMemberLoginStatusListResp {
+        Code string `json:"code"`
+        Message string `json:"message"`
+        Data []*QueryMemberLoginStatusListData `json:"data"`
+        Success bool `json:"success"`
+    }
+)
+
+@server(
+    group: demo/member_login_status
+    prefix: /api/demo/memberLoginStatus
+)
+service demo-api {
+    // 添加用户登录状态
+    @handler AddMemberLoginStatus
+    post /addMemberLoginStatus (AddMemberLoginStatusReq) returns (AddMemberLoginStatusResp)
+
+    // 删除用户登录状态
+    @handler DeleteMemberLoginStatus
+    get /deleteMemberLoginStatus (DeleteMemberLoginStatusReq) returns (DeleteMemberLoginStatusResp)
+
+    // 更新用户登录状态
+    @handler UpdateMemberLoginStatus
+    post /updateMemberLoginStatus (UpdateMemberLoginStatusReq) returns (UpdateMemberLoginStatusResp)
+
+    // 更新用户登录状态状态
+    @handler UpdateMemberLoginStatusStatus
+    post /updateMemberLoginStatusStatus (UpdateMemberLoginStatusStatusReq) returns (UpdateMemberLoginStatusStatusResp)
+
+    // 查询用户登录状态详情
+    @handler QueryMemberLoginStatusDetail
+    get /queryMemberLoginStatusDetail (QueryMemberLoginStatusDetailReq) returns (QueryMemberLoginStatusDetailResp)
+
+    // 分页查询用户登录状态列表
+    @handler QueryPageMemberLoginStatusList
+    get /queryPageMemberLoginStatusList (QueryPageMemberLoginStatusListReq) returns (QueryPageMemberLoginStatusListResp)
+
+    // 查询用户登录状态所有列表
+    @handler QueryMemberLoginStatusList
+    get /queryMemberLoginStatusList (QueryMemberLoginStatusListReq) returns (QueryMemberLoginStatusListResp)
+}
