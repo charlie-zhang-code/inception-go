@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package main;
+
+option go_package = "./pb";
+
+// 文件
+message File {
+  string name = 1;
+  bytes content = 2;
+}
+
+// 资源限制
+message ResourceLimits {
+  int32 time_limit_ms = 1;
+  int64 memory_limit_kb = 2;
+  int32 process_limit = 3;
+  int64 stack_limit_kb = 4;
+}
+
+// 环境变量
+message EnvironmentVariable {
+  string key = 1;
+  string value = 2;
+}
+
+// 编译请求
+message CompileReq {
+  repeated File files = 1;
+  string language = 2;
+  string compiler_options = 3;
+  repeated ResourceLimits limits = 4;
+}
+
+// 编译响应
+message CompileResp {
+  bool success = 1;
+  string binary_id = 2;
+  string error_message = 3;
+}
+
+// 运行请求
+message RunReq {
+  string binary_id = 1;
+  repeated string args = 2;
+  repeated EnvironmentVariable env_vars = 3;
+  ResourceLimits limits = 4;
+}
+
+// 运行响应
+message RunResp {
+  bool success = 1;
+  string output = 2;
+  string error_output = 3;
+  string error_message = 4;
+  int32 exit_code = 5;
+  int32 real_time_ms = 6;
+  int32 cpu_time_ms = 7;
+  int64 memory_usage_kb = 8;
+}
+
+service Service {
+  // 编译
+  rpc Compile(CompileReq) returns (CompileResp);
+  // 运行
+  rpc Run(RunReq) returns (RunResp);
+}
