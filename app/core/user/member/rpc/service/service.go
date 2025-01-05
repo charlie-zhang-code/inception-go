@@ -14,40 +14,48 @@ import (
 )
 
 type (
-	AddMemberReq                   = pb.AddMemberReq
-	AddMemberResp                  = pb.AddMemberResp
-	DeleteMemberReq                = pb.DeleteMemberReq
-	DeleteMemberResp               = pb.DeleteMemberResp
-	KeywordMemberListData          = pb.KeywordMemberListData
-	KeywordPageMemberListData      = pb.KeywordPageMemberListData
-	MemberListData                 = pb.MemberListData
-	PageMemberListData             = pb.PageMemberListData
-	QueryKeywordMemberListReq      = pb.QueryKeywordMemberListReq
-	QueryKeywordMemberListResp     = pb.QueryKeywordMemberListResp
-	QueryKeywordPageMemberListReq  = pb.QueryKeywordPageMemberListReq
-	QueryKeywordPageMemberListResp = pb.QueryKeywordPageMemberListResp
-	QueryMemberDetailReq           = pb.QueryMemberDetailReq
-	QueryMemberDetailResp          = pb.QueryMemberDetailResp
-	QueryMemberListReq             = pb.QueryMemberListReq
-	QueryMemberListResp            = pb.QueryMemberListResp
-	QueryPageMemberListReq         = pb.QueryPageMemberListReq
-	QueryPageMemberListResp        = pb.QueryPageMemberListResp
-	UpdateMemberReq                = pb.UpdateMemberReq
-	UpdateMemberResp               = pb.UpdateMemberResp
-	UpdateMemberStatusReq          = pb.UpdateMemberStatusReq
-	UpdateMemberStatusResp         = pb.UpdateMemberStatusResp
+	AddMemberReq                      = pb.AddMemberReq
+	AddMemberResp                     = pb.AddMemberResp
+	AddMemberWithUsernamePasswordReq  = pb.AddMemberWithUsernamePasswordReq
+	AddMemberWithUsernamePasswordResp = pb.AddMemberWithUsernamePasswordResp
+	DeleteMemberReq                   = pb.DeleteMemberReq
+	DeleteMemberResp                  = pb.DeleteMemberResp
+	KeywordMemberListData             = pb.KeywordMemberListData
+	KeywordPageMemberListData         = pb.KeywordPageMemberListData
+	MemberListData                    = pb.MemberListData
+	PageMemberListData                = pb.PageMemberListData
+	QueryKeywordMemberListReq         = pb.QueryKeywordMemberListReq
+	QueryKeywordMemberListResp        = pb.QueryKeywordMemberListResp
+	QueryKeywordPageMemberListReq     = pb.QueryKeywordPageMemberListReq
+	QueryKeywordPageMemberListResp    = pb.QueryKeywordPageMemberListResp
+	QueryMemberDetailByIdentifyReq    = pb.QueryMemberDetailByIdentifyReq
+	QueryMemberDetailByIdentifyResp   = pb.QueryMemberDetailByIdentifyResp
+	QueryMemberDetailReq              = pb.QueryMemberDetailReq
+	QueryMemberDetailResp             = pb.QueryMemberDetailResp
+	QueryMemberListReq                = pb.QueryMemberListReq
+	QueryMemberListResp               = pb.QueryMemberListResp
+	QueryPageMemberListReq            = pb.QueryPageMemberListReq
+	QueryPageMemberListResp           = pb.QueryPageMemberListResp
+	UpdateMemberReq                   = pb.UpdateMemberReq
+	UpdateMemberResp                  = pb.UpdateMemberResp
+	UpdateMemberStatusReq             = pb.UpdateMemberStatusReq
+	UpdateMemberStatusResp            = pb.UpdateMemberStatusResp
 
 	Service interface {
 		// 添加用户
 		AddMember(ctx context.Context, in *AddMemberReq, opts ...grpc.CallOption) (*AddMemberResp, error)
+		// 添加用户
+		AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error)
 		// 删除用户
 		DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error)
 		// 更新用户
 		UpdateMember(ctx context.Context, in *UpdateMemberReq, opts ...grpc.CallOption) (*UpdateMemberResp, error)
 		// 更新用户状态
 		UpdateMemberStatus(ctx context.Context, in *UpdateMemberStatusReq, opts ...grpc.CallOption) (*UpdateMemberStatusResp, error)
-		// 查询用户详情
+		// 查询用户详情（通过id）
 		QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error)
+		// 查询用户详情（通过id）
+		QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error)
 		// 查询用户分页列表
 		QueryPageMemberList(ctx context.Context, in *QueryPageMemberListReq, opts ...grpc.CallOption) (*QueryPageMemberListResp, error)
 		// 查询关键字用户分页列表
@@ -75,6 +83,12 @@ func (m *defaultService) AddMember(ctx context.Context, in *AddMemberReq, opts .
 	return client.AddMember(ctx, in, opts...)
 }
 
+// 添加用户
+func (m *defaultService) AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.AddMemberWithUsernamePassword(ctx, in, opts...)
+}
+
 // 删除用户
 func (m *defaultService) DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error) {
 	client := pb.NewServiceClient(m.cli.Conn())
@@ -93,10 +107,16 @@ func (m *defaultService) UpdateMemberStatus(ctx context.Context, in *UpdateMembe
 	return client.UpdateMemberStatus(ctx, in, opts...)
 }
 
-// 查询用户详情
+// 查询用户详情（通过id）
 func (m *defaultService) QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error) {
 	client := pb.NewServiceClient(m.cli.Conn())
 	return client.QueryMemberDetail(ctx, in, opts...)
+}
+
+// 查询用户详情（通过id）
+func (m *defaultService) QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.QueryMemberDetailByIdentify(ctx, in, opts...)
 }
 
 // 查询用户分页列表

@@ -14,6 +14,7 @@ import (
 )
 
 type (
+	CheckTokenReq            = pb.CheckTokenReq
 	RefreshTokenReq          = pb.RefreshTokenReq
 	TokenResp                = pb.TokenResp
 	UsernamePasswordTokenReq = pb.UsernamePasswordTokenReq
@@ -21,8 +22,14 @@ type (
 	Service interface {
 		// 通过用户名密码获取token
 		QueryUsernamePasswordToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+		// 不透明令牌颁发
+		QueryUsernamePasswordOpaqueToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+		// 校验不透明令牌
+		CheckOpaqueToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
 		// 刷新令牌
 		QueryRefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+		// 校验Token
+		CheckToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
 	}
 
 	defaultService struct {
@@ -42,8 +49,26 @@ func (m *defaultService) QueryUsernamePasswordToken(ctx context.Context, in *Use
 	return client.QueryUsernamePasswordToken(ctx, in, opts...)
 }
 
+// 不透明令牌颁发
+func (m *defaultService) QueryUsernamePasswordOpaqueToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.QueryUsernamePasswordOpaqueToken(ctx, in, opts...)
+}
+
+// 校验不透明令牌
+func (m *defaultService) CheckOpaqueToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.CheckOpaqueToken(ctx, in, opts...)
+}
+
 // 刷新令牌
 func (m *defaultService) QueryRefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
 	client := pb.NewServiceClient(m.cli.Conn())
 	return client.QueryRefreshToken(ctx, in, opts...)
+}
+
+// 校验Token
+func (m *defaultService) CheckToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	client := pb.NewServiceClient(m.cli.Conn())
+	return client.CheckToken(ctx, in, opts...)
 }

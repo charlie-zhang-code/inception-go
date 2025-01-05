@@ -8,4 +8,5 @@ use (
 	./app/unit/sandbox/codebox
 
 	./app/std/convert
+	./app/std/ntoken
 )

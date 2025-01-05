@@ -25,6 +25,17 @@ message AddMemberResp {
   string message = 2;
 }
 
+// 添加用户（用户名和密码）
+message AddMemberWithUsernamePasswordReq {
+  string username = 1;
+  string password = 2;
+}
+
+message AddMemberWithUsernamePasswordResp {
+  int64 code = 1;
+  string message = 2;
+}
+
 // 删除用户
 message DeleteMemberReq {
   repeated int64 ids = 1;
@@ -75,6 +86,33 @@ message QueryMemberDetailReq {
 }
 
 message QueryMemberDetailResp {
+  int64 id = 1; //用户唯一标识符，主键
+  string identify = 2; //用户的唯一标识符
+  string username = 3; //用户登录时使用的用户名
+  string password = 4; //用户账户的密码，应存储加密后的值
+  string nickname = 5; //用户在系统中显示的名字，可选
+  string avatar = 6; //用户头像的URL或路径
+  string quote = 7; //用户设置的个人座右铭或签名
+  string birthday = 8; //用户的出生日期，用于个性化服务或统计
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
+  string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 18; //对记录的备注信息，如特殊说明等
+  string create_at = 19; //记录创建的时间戳
+  string create_by = 20; //创建该记录的用户标识符
+  string update_at = 21; //记录最后更新的时间戳
+  string update_by = 22; //最后更新该记录的用户标识符
+}
+
+// 根据唯一标识查询用户详情
+message QueryMemberDetailByIdentifyReq {
+  string identify = 1;
+}
+
+// 根据唯一标识查询用户详情
+message QueryMemberDetailByIdentifyResp {
   int64 id = 1; //用户唯一标识符，主键
   string identify = 2; //用户的唯一标识符
   string username = 3; //用户登录时使用的用户名
@@ -223,14 +261,18 @@ message QueryKeywordMemberListResp {
 service Service {
   // 添加用户
   rpc AddMember(AddMemberReq) returns (AddMemberResp){}
+  // 添加用户
+  rpc AddMemberWithUsernamePassword(AddMemberWithUsernamePasswordReq) returns (AddMemberWithUsernamePasswordResp){}
   // 删除用户
   rpc DeleteMember(DeleteMemberReq) returns (DeleteMemberResp){}
   // 更新用户
   rpc UpdateMember(UpdateMemberReq) returns (UpdateMemberResp){}
   // 更新用户状态
   rpc UpdateMemberStatus(UpdateMemberStatusReq) returns (UpdateMemberStatusResp){}
-  // 查询用户详情
+  // 查询用户详情（通过id）
   rpc QueryMemberDetail(QueryMemberDetailReq) returns (QueryMemberDetailResp){}
+  // 查询用户详情（通过id）
+  rpc QueryMemberDetailByIdentify(QueryMemberDetailByIdentifyReq) returns (QueryMemberDetailByIdentifyResp){}
   // 查询用户分页列表
   rpc QueryPageMemberList(QueryPageMemberListReq) returns (QueryPageMemberListResp){}
   // 查询关键字用户分页列表

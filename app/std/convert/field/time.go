@@ -20,7 +20,7 @@ func TimeFields(src, dst interface{}) error {
 			// 格式化时间并设置到目标字段
 			timeStr := ""
 			if !srcField.Interface().(time.Time).IsZero() {
-				timeStr = srcField.Interface().(time.Time).Format(time.RFC3339)
+				timeStr = srcField.Interface().(time.Time).Format(time.DateTime)
 			}
 			dstVal.Field(i).SetString(timeStr)
 		}

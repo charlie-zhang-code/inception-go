@@ -10,19 +10,18 @@ import (
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
 	"strings"
-	"time"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type AddMemberLogic struct {
+type AddMemberWithUsernamePasswordLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewAddMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddMemberLogic {
-	return &AddMemberLogic{
+func NewAddMemberWithUsernamePasswordLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddMemberWithUsernamePasswordLogic {
+	return &AddMemberWithUsernamePasswordLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
@@ -30,12 +29,7 @@ func NewAddMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddMemb
 }
 
 // 添加用户
-func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, error) {
-	birthday, err := time.Parse(time.DateOnly, in.Birthday)
-	if err != nil {
-		return nil, err
-	}
-
+func (l *AddMemberWithUsernamePasswordLogic) AddMemberWithUsernamePassword(in *pb.AddMemberWithUsernamePasswordReq) (*pb.AddMemberWithUsernamePasswordResp, error) {
 	// 随机标识
 	identify := strings.ReplaceAll(uuid.New().String(), "-", "")
 
@@ -46,20 +40,9 @@ func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, erro
 	}
 
 	entity := &model.SysMember{
-		Identify:  identify,
-		Password:  string(hashedPassword),
-		Username:  in.Username,
-		Nickname:  in.Nickname,
-		Avatar:    in.Avatar,
-		Quote:     in.Quote,
-		Birthday:  birthday,
-		Gender:    int32(in.Gender),
-		Email:     in.Email,
-		Telephone: in.Telephone,
-		Status:    int32(in.Status),
-		Deleted:   int32(in.Deleted),
-		Remark:    in.Remark,
-		CreateBy:  in.CreateBy,
+		Identify: identify,
+		Password: string(hashedPassword),
+		Username: in.Username,
 	}
 
 	err = l.svcCtx.DB.Transaction(func(tx *gorm.DB) error {
@@ -69,5 +52,5 @@ func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, erro
 		return nil
 	})
 
-	return &pb.AddMemberResp{}, err
+	return &pb.AddMemberWithUsernamePasswordResp{}, nil
 }

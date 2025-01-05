@@ -29,8 +29,26 @@ func (s *ServiceServer) QueryUsernamePasswordToken(ctx context.Context, in *pb.U
 	return l.QueryUsernamePasswordToken(in)
 }
 
+// 不透明令牌颁发
+func (s *ServiceServer) QueryUsernamePasswordOpaqueToken(ctx context.Context, in *pb.UsernamePasswordTokenReq) (*pb.TokenResp, error) {
+	l := logic.NewQueryUsernamePasswordOpaqueTokenLogic(ctx, s.svcCtx)
+	return l.QueryUsernamePasswordOpaqueToken(in)
+}
+
+// 校验不透明令牌
+func (s *ServiceServer) CheckOpaqueToken(ctx context.Context, in *pb.CheckTokenReq) (*pb.TokenResp, error) {
+	l := logic.NewCheckOpaqueTokenLogic(ctx, s.svcCtx)
+	return l.CheckOpaqueToken(in)
+}
+
 // 刷新令牌
 func (s *ServiceServer) QueryRefreshToken(ctx context.Context, in *pb.RefreshTokenReq) (*pb.TokenResp, error) {
 	l := logic.NewQueryRefreshTokenLogic(ctx, s.svcCtx)
 	return l.QueryRefreshToken(in)
+}
+
+// 校验Token
+func (s *ServiceServer) CheckToken(ctx context.Context, in *pb.CheckTokenReq) (*pb.TokenResp, error) {
+	l := logic.NewCheckTokenLogic(ctx, s.svcCtx)
+	return l.CheckToken(in)
 }

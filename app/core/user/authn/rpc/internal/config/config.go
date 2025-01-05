@@ -12,8 +12,10 @@ type Config struct {
 	Consul consul.Conf
 
 	JwtAuth struct {
-		AccessSecret string
-		AccessExpire int64
+		AccessSecret  string
+		AccessExpire  int
+		RefreshSecret string
+		RefreshExpire int
 	}
 
 	MySQL struct {
@@ -26,6 +28,7 @@ type Config struct {
 	Cache redis.RedisConf
 
 	Default struct {
+		Salt     string
 		Password string
 	}
 }

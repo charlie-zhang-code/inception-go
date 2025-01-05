@@ -20,12 +20,21 @@ message RefreshTokenReq {
   string refresh_token = 1; //刷新令牌
 }
 
+message CheckTokenReq {
+  string access_token = 1;
+  string refresh_token = 2;
+  string client = 3;
+}
+
 service Service {
   // 通过用户名密码获取token
   rpc QueryUsernamePasswordToken(UsernamePasswordTokenReq) returns (TokenResp);
+  // 不透明令牌颁发
+  rpc QueryUsernamePasswordOpaqueToken(UsernamePasswordTokenReq) returns (TokenResp);
+  // 校验不透明令牌
+  rpc CheckOpaqueToken(CheckTokenReq) returns (TokenResp);
   // 刷新令牌
   rpc QueryRefreshToken(RefreshTokenReq) returns (TokenResp);
   // 校验Token
-
-  // 根据Token获取用户的ID
+  rpc CheckToken(CheckTokenReq) returns (TokenResp);
 }

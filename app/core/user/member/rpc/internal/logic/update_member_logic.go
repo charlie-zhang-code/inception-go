@@ -57,8 +57,7 @@ func (l *UpdateMemberLogic) UpdateMember(in *pb.UpdateMemberReq) (*pb.UpdateMemb
 
 	// 检查并添加生日更新
 	if in.Birthday != "" {
-		layout := "2006-01-02"
-		birthday, err := time.Parse(layout, in.Birthday)
+		birthday, err := time.Parse(time.DateOnly, in.Birthday)
 		if err != nil {
 			return nil, fmt.Errorf("invalid birthday format: %v", err)
 		}

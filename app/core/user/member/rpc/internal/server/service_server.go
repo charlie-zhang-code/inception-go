@@ -29,6 +29,12 @@ func (s *ServiceServer) AddMember(ctx context.Context, in *pb.AddMemberReq) (*pb
 	return l.AddMember(in)
 }
 
+// 添加用户
+func (s *ServiceServer) AddMemberWithUsernamePassword(ctx context.Context, in *pb.AddMemberWithUsernamePasswordReq) (*pb.AddMemberWithUsernamePasswordResp, error) {
+	l := logic.NewAddMemberWithUsernamePasswordLogic(ctx, s.svcCtx)
+	return l.AddMemberWithUsernamePassword(in)
+}
+
 // 删除用户
 func (s *ServiceServer) DeleteMember(ctx context.Context, in *pb.DeleteMemberReq) (*pb.DeleteMemberResp, error) {
 	l := logic.NewDeleteMemberLogic(ctx, s.svcCtx)
@@ -47,10 +53,16 @@ func (s *ServiceServer) UpdateMemberStatus(ctx context.Context, in *pb.UpdateMem
 	return l.UpdateMemberStatus(in)
 }
 
-// 查询用户详情
+// 查询用户详情（通过id）
 func (s *ServiceServer) QueryMemberDetail(ctx context.Context, in *pb.QueryMemberDetailReq) (*pb.QueryMemberDetailResp, error) {
 	l := logic.NewQueryMemberDetailLogic(ctx, s.svcCtx)
 	return l.QueryMemberDetail(in)
+}
+
+// 查询用户详情（通过id）
+func (s *ServiceServer) QueryMemberDetailByIdentify(ctx context.Context, in *pb.QueryMemberDetailByIdentifyReq) (*pb.QueryMemberDetailByIdentifyResp, error) {
+	l := logic.NewQueryMemberDetailByIdentifyLogic(ctx, s.svcCtx)
+	return l.QueryMemberDetailByIdentify(in)
 }
 
 // 查询用户分页列表

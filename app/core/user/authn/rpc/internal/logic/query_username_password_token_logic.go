@@ -5,10 +5,9 @@ import (
 	"authn/rpc/pb"
 	"context"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/zeromicro/go-zero/core/logx"
 	"strconv"
 	"time"
-
-	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type QueryUsernamePasswordTokenLogic struct {
@@ -27,26 +26,53 @@ func NewQueryUsernamePasswordTokenLogic(ctx context.Context, svcCtx *svc.Service
 
 // 通过用户名密码获取token
 func (l *QueryUsernamePasswordTokenLogic) QueryUsernamePasswordToken(in *pb.UsernamePasswordTokenReq) (*pb.TokenResp, error) {
-	// todo: add your logic here and delete this line
+
+	// 临时测试
+	uid := "sdgwsectwerg-sagrcwrg-cadevaw"
+
 	now := time.Now().Unix()
+
+	// Access Token
 	accessExpire := l.svcCtx.Config.JwtAuth.AccessExpire
-	accessToken, err := GetToken(l.svcCtx.Config.JwtAuth.AccessSecret, now, accessExpire, 145)
+	accessToken, err := GetAccessToken(l.svcCtx.Config.JwtAuth.AccessSecret, now, accessExpire, uid)
 	if err != nil {
 		return nil, err
 	}
 
+	// Refresh Token
+	refreshExpire := l.svcCtx.Config.JwtAuth.RefreshExpire
+	refreshToken, err := GetRefreshToken(l.svcCtx.Config.JwtAuth.RefreshSecret, now, refreshExpire, uid)
+	if err != nil {
+		return nil, err
+	}
+
+	expirationTime := now + int64(accessExpire)
+
 	return &pb.TokenResp{
 		AccessToken:  accessToken,
-		AccessExpire: strconv.FormatInt(accessExpire, 10),
+		AccessExpire: strconv.FormatInt(expirationTime, 10),
+		RefreshAfter: strconv.FormatInt(expirationTime-time.Now().Unix(), 10),
+		RefreshToken: refreshToken,
 	}, nil
 }
 
-func GetToken(secretKey string, iat, seconds, uid int64) (string, error) {
-	claims := make(jwt.MapClaims)
-	claims["exp"] = iat + seconds
-	claims["iat"] = iat
-	claims["uid"] = uid
-	token := jwt.New(jwt.SigningMethodHS256)
-	token.Claims = claims
+func GetAccessToken(secretKey string, iat int64, expireSeconds int, uid string) (string, error) {
+	claims := jwt.MapClaims{
+		"exp": iat + int64(expireSeconds),
+		"iat": iat,
+		"uid": uid,
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(secretKey))
+}
+
+func GetRefreshToken(secretKey string, iat int64, expireSeconds int, uid string) (string, error) {
+	claims := jwt.MapClaims{
+		"exp": iat + int64(expireSeconds),
+		"iat": iat,
+		"uid": uid,
+		"typ": "refresh",
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	return token.SignedString([]byte(secretKey))
 }

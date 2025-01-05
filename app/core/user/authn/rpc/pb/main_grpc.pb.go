@@ -19,8 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_QueryUsernamePasswordToken_FullMethodName = "/main.Service/QueryUsernamePasswordToken"
-	Service_QueryRefreshToken_FullMethodName          = "/main.Service/QueryRefreshToken"
+	Service_QueryUsernamePasswordToken_FullMethodName       = "/main.Service/QueryUsernamePasswordToken"
+	Service_QueryUsernamePasswordOpaqueToken_FullMethodName = "/main.Service/QueryUsernamePasswordOpaqueToken"
+	Service_CheckOpaqueToken_FullMethodName                 = "/main.Service/CheckOpaqueToken"
+	Service_QueryRefreshToken_FullMethodName                = "/main.Service/QueryRefreshToken"
+	Service_CheckToken_FullMethodName                       = "/main.Service/CheckToken"
 )
 
 // ServiceClient is the client API for Service service.
@@ -29,8 +32,14 @@ const (
 type ServiceClient interface {
 	// 通过用户名密码获取token
 	QueryUsernamePasswordToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+	// 不透明令牌颁发
+	QueryUsernamePasswordOpaqueToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+	// 校验不透明令牌
+	CheckOpaqueToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
 	// 刷新令牌
 	QueryRefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
+	// 校验Token
+	CheckToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error)
 }
 
 type serviceClient struct {
@@ -51,10 +60,40 @@ func (c *serviceClient) QueryUsernamePasswordToken(ctx context.Context, in *User
 	return out, nil
 }
 
+func (c *serviceClient) QueryUsernamePasswordOpaqueToken(ctx context.Context, in *UsernamePasswordTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TokenResp)
+	err := c.cc.Invoke(ctx, Service_QueryUsernamePasswordOpaqueToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) CheckOpaqueToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TokenResp)
+	err := c.cc.Invoke(ctx, Service_CheckOpaqueToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *serviceClient) QueryRefreshToken(ctx context.Context, in *RefreshTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TokenResp)
 	err := c.cc.Invoke(ctx, Service_QueryRefreshToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *serviceClient) CheckToken(ctx context.Context, in *CheckTokenReq, opts ...grpc.CallOption) (*TokenResp, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TokenResp)
+	err := c.cc.Invoke(ctx, Service_CheckToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,8 +106,14 @@ func (c *serviceClient) QueryRefreshToken(ctx context.Context, in *RefreshTokenR
 type ServiceServer interface {
 	// 通过用户名密码获取token
 	QueryUsernamePasswordToken(context.Context, *UsernamePasswordTokenReq) (*TokenResp, error)
+	// 不透明令牌颁发
+	QueryUsernamePasswordOpaqueToken(context.Context, *UsernamePasswordTokenReq) (*TokenResp, error)
+	// 校验不透明令牌
+	CheckOpaqueToken(context.Context, *CheckTokenReq) (*TokenResp, error)
 	// 刷新令牌
 	QueryRefreshToken(context.Context, *RefreshTokenReq) (*TokenResp, error)
+	// 校验Token
+	CheckToken(context.Context, *CheckTokenReq) (*TokenResp, error)
 	mustEmbedUnimplementedServiceServer()
 }
 
@@ -82,8 +127,17 @@ type UnimplementedServiceServer struct{}
 func (UnimplementedServiceServer) QueryUsernamePasswordToken(context.Context, *UsernamePasswordTokenReq) (*TokenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryUsernamePasswordToken not implemented")
 }
+func (UnimplementedServiceServer) QueryUsernamePasswordOpaqueToken(context.Context, *UsernamePasswordTokenReq) (*TokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method QueryUsernamePasswordOpaqueToken not implemented")
+}
+func (UnimplementedServiceServer) CheckOpaqueToken(context.Context, *CheckTokenReq) (*TokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckOpaqueToken not implemented")
+}
 func (UnimplementedServiceServer) QueryRefreshToken(context.Context, *RefreshTokenReq) (*TokenResp, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method QueryRefreshToken not implemented")
+}
+func (UnimplementedServiceServer) CheckToken(context.Context, *CheckTokenReq) (*TokenResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
 }
 func (UnimplementedServiceServer) mustEmbedUnimplementedServiceServer() {}
 func (UnimplementedServiceServer) testEmbeddedByValue()                 {}
@@ -124,6 +178,42 @@ func _Service_QueryUsernamePasswordToken_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_QueryUsernamePasswordOpaqueToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UsernamePasswordTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).QueryUsernamePasswordOpaqueToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_QueryUsernamePasswordOpaqueToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).QueryUsernamePasswordOpaqueToken(ctx, req.(*UsernamePasswordTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Service_CheckOpaqueToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).CheckOpaqueToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_CheckOpaqueToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).CheckOpaqueToken(ctx, req.(*CheckTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Service_QueryRefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RefreshTokenReq)
 	if err := dec(in); err != nil {
@@ -142,6 +232,24 @@ func _Service_QueryRefreshToken_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Service_CheckToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckTokenReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ServiceServer).CheckToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Service_CheckToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ServiceServer).CheckToken(ctx, req.(*CheckTokenReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Service_ServiceDesc is the grpc.ServiceDesc for Service service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -154,8 +262,20 @@ var Service_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Service_QueryUsernamePasswordToken_Handler,
 		},
 		{
+			MethodName: "QueryUsernamePasswordOpaqueToken",
+			Handler:    _Service_QueryUsernamePasswordOpaqueToken_Handler,
+		},
+		{
+			MethodName: "CheckOpaqueToken",
+			Handler:    _Service_CheckOpaqueToken_Handler,
+		},
+		{
 			MethodName: "QueryRefreshToken",
 			Handler:    _Service_QueryRefreshToken_Handler,
+		},
+		{
+			MethodName: "CheckToken",
+			Handler:    _Service_CheckToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
