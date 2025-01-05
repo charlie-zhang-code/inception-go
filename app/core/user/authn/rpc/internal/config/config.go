@@ -13,9 +13,9 @@ type Config struct {
 
 	JwtAuth struct {
 		AccessSecret  string
-		AccessExpire  int
+		AccessExpire  int64
 		RefreshSecret string
-		RefreshExpire int
+		RefreshExpire int64
 	}
 
 	MySQL struct {
@@ -28,7 +28,8 @@ type Config struct {
 	Cache redis.RedisConf
 
 	Default struct {
-		Salt     string
 		Password string
 	}
+
+	MemberRpc zrpc.RpcClientConf
 }

@@ -2,14 +2,14 @@ package logic
 
 import (
 	"context"
-	"fmt"
 	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 	"member/proto/model"
+	"strings"
+
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
-	"strings"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -34,9 +34,12 @@ func (l *AddMemberWithUsernamePasswordLogic) AddMemberWithUsernamePassword(in *p
 	identify := strings.ReplaceAll(uuid.New().String(), "-", "")
 
 	// 默认密码
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(l.svcCtx.Config.Default.Password), bcrypt.DefaultCost)
+	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(in.Password), bcrypt.DefaultCost)
 	if err != nil {
-		return nil, err
+		return &pb.AddMemberWithUsernamePasswordResp{
+			Code:    500,
+			Message: err.Error(),
+		}, nil
 	}
 
 	entity := &model.SysMember{
@@ -47,10 +50,20 @@ func (l *AddMemberWithUsernamePasswordLogic) AddMemberWithUsernamePassword(in *p
 
 	err = l.svcCtx.DB.Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(entity).Error; err != nil {
-			return fmt.Errorf("failed to create member: %v", err)
+			return err
 		}
 		return nil
 	})
 
-	return &pb.AddMemberWithUsernamePasswordResp{}, nil
+	if err != nil {
+		return &pb.AddMemberWithUsernamePasswordResp{
+			Code:    500,
+			Message: err.Error(),
+		}, nil
+	}
+
+	return &pb.AddMemberWithUsernamePasswordResp{
+		Code:    200,
+		Message: "success",
+	}, nil
 }

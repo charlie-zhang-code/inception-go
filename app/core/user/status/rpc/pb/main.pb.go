@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.1
 // 	protoc        v3.19.4
-// source: proto/rpc/main.proto
+// source: proto/rpc/member.proto
 
 package pb
 

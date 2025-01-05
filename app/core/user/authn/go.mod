@@ -3,9 +3,9 @@ module authn
 go 1.23.4
 
 require (
+	github.com/golang-jwt/jwt/v4 v4.5.0
 	github.com/zeromicro/go-zero v1.7.3
 	github.com/zeromicro/zero-contrib/zrpc/registry/consul v0.0.0-20231030135404-af9ae855016f
-	golang.org/x/crypto v0.28.0
 	google.golang.org/grpc v1.65.0
 	google.golang.org/protobuf v1.35.1
 	gorm.io/driver/mysql v1.5.7

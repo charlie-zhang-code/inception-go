@@ -7,10 +7,11 @@ import (
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 	"member/proto/model"
-	"member/rpc/internal/svc"
-	"member/rpc/pb"
 	"strings"
 	"time"
+
+	"member/rpc/internal/svc"
+	"member/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -33,7 +34,10 @@ func NewAddMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddMemb
 func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, error) {
 	birthday, err := time.Parse(time.DateOnly, in.Birthday)
 	if err != nil {
-		return nil, err
+		return &pb.AddMemberResp{
+			Code:    500,
+			Message: err.Error(),
+		}, err
 	}
 
 	// 随机标识
@@ -42,7 +46,10 @@ func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, erro
 	// 默认密码
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(l.svcCtx.Config.Default.Password), bcrypt.DefaultCost)
 	if err != nil {
-		return nil, err
+		return &pb.AddMemberResp{
+			Code:    500,
+			Message: err.Error(),
+		}, err
 	}
 
 	entity := &model.SysMember{
@@ -69,5 +76,8 @@ func (l *AddMemberLogic) AddMember(in *pb.AddMemberReq) (*pb.AddMemberResp, erro
 		return nil
 	})
 
-	return &pb.AddMemberResp{}, err
+	return &pb.AddMemberResp{
+		Code:    200,
+		Message: "success",
+	}, err
 }

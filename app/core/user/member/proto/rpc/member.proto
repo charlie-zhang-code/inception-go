@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package main;
+package member;
 
 option go_package = "./pb";
 
@@ -133,6 +133,31 @@ message QueryMemberDetailByIdentifyResp {
   string update_by = 22; //最后更新该记录的用户标识符
 }
 
+message QueryMemberDetailByUsernameReq {
+  string username = 1; //用户登录时使用的用户名
+}
+
+message QueryMemberDetailByUsernameResp {
+  int64 id = 1; //用户唯一标识符，主键
+  string identify = 2; //用户的唯一标识符
+  string username = 3; //用户登录时使用的用户名
+  string password = 4; //用户账户的密码，应存储加密后的值
+  string nickname = 5; //用户在系统中显示的名字，可选
+  string avatar = 6; //用户头像的URL或路径
+  string quote = 7; //用户设置的个人座右铭或签名
+  string birthday = 8; //用户的出生日期，用于个性化服务或统计
+  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
+  string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
+  string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
+  int64 status = 16; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 18; //对记录的备注信息，如特殊说明等
+  string create_at = 19; //记录创建的时间戳
+  string create_by = 20; //创建该记录的用户标识符
+  string update_at = 21; //记录最后更新的时间戳
+  string update_by = 22; //最后更新该记录的用户标识符
+}
+
 // 分页查询用户列表
 message QueryPageMemberListReq {
   int64 page_num = 1; //第几页
@@ -198,67 +223,8 @@ message QueryKeywordPageMemberListResp {
   repeated  KeywordPageMemberListData list = 2;
 }
 
-// 查询用户列表
-message QueryMemberListReq {
-}
-
-message MemberListData {
-  int64 id = 1; //用户唯一标识符，主键
-  string identify = 2; //用户的唯一标识符
-  string username = 3; //用户登录时使用的用户名
-  string password = 4; //用户账户的密码，应存储加密后的值
-  string nickname = 5; //用户在系统中显示的名字，可选
-  string avatar = 6; //用户头像的URL或路径
-  string quote = 7; //用户设置的个人座右铭或签名
-  string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
-  string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
-  string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  int64 status = 16; //状态，0表示禁用，1表示正常启用
-  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
-}
-
-message QueryMemberListResp {
-  repeated  MemberListData list = 1;
-}
-
-// 查询关键字用户列表
-message QueryKeywordMemberListReq {
-  string keyword = 1;
-}
-
-message KeywordMemberListData {
-  int64 id = 1; //用户唯一标识符，主键
-  string identify = 2; //用户的唯一标识符
-  string username = 3; //用户登录时使用的用户名
-  string password = 4; //用户账户的密码，应存储加密后的值
-  string nickname = 5; //用户在系统中显示的名字，可选
-  string avatar = 6; //用户头像的URL或路径
-  string quote = 7; //用户设置的个人座右铭或签名
-  string birthday = 8; //用户的出生日期，用于个性化服务或统计
-  int64 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
-  string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
-  string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  int64 status = 16; //状态，0表示禁用，1表示正常启用
-  int64 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
-}
-
-message QueryKeywordMemberListResp {
-  repeated  KeywordMemberListData list = 1;
-}
-
 // 用户
-service Service {
+service Member {
   // 添加用户
   rpc AddMember(AddMemberReq) returns (AddMemberResp){}
   // 添加用户
@@ -271,14 +237,12 @@ service Service {
   rpc UpdateMemberStatus(UpdateMemberStatusReq) returns (UpdateMemberStatusResp){}
   // 查询用户详情（通过id）
   rpc QueryMemberDetail(QueryMemberDetailReq) returns (QueryMemberDetailResp){}
-  // 查询用户详情（通过id）
+  // 查询用户详情（通过用户唯一标识）
   rpc QueryMemberDetailByIdentify(QueryMemberDetailByIdentifyReq) returns (QueryMemberDetailByIdentifyResp){}
+  // 查询用户详情（通过用户名）
+  rpc QueryMemberDetailByUsername(QueryMemberDetailByUsernameReq) returns (QueryMemberDetailByUsernameResp){}
   // 查询用户分页列表
   rpc QueryPageMemberList(QueryPageMemberListReq) returns (QueryPageMemberListResp){}
   // 查询关键字用户分页列表
   rpc QueryKeywordPageMemberList(QueryKeywordPageMemberListReq) returns (QueryKeywordPageMemberListResp){}
-  // 查询用户所有列表
-  rpc QueryMemberList(QueryMemberListReq) returns (QueryMemberListResp){}
-  // 查询关键字用户列表
-  rpc QueryKeywordMemberList(QueryKeywordMemberListReq) returns (QueryKeywordMemberListResp){}
 }

@@ -28,4 +28,6 @@ type Config struct {
 	Default struct {
 		Password string
 	}
+
+	MemberRpc zrpc.RpcClientConf
 }

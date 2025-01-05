@@ -3,12 +3,12 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
 
-	"member/rpc/internal/config"
-	"member/rpc/internal/server"
-	"member/rpc/internal/svc"
-	"member/rpc/pb"
+	"authn/rpc/internal/config"
+	jwttokenServer "authn/rpc/internal/server/jwttoken"
+	opaquetokenServer "authn/rpc/internal/server/opaquetoken"
+	"authn/rpc/internal/svc"
+	"authn/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -17,7 +17,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "etc/main.yaml", "the config file")
+var configFile = flag.String("f", "etc/authn.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -27,15 +27,14 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		pb.RegisterServiceServer(grpcServer, server.NewServiceServer(ctx))
+		pb.RegisterJwtTokenServer(grpcServer, jwttokenServer.NewJwtTokenServer(ctx))
+		pb.RegisterOpaqueTokenServer(grpcServer, opaquetokenServer.NewOpaqueTokenServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)
 		}
 	})
 	defer s.Stop()
-
-	_ = consul.RegisterService(c.ListenOn, c.Consul)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()

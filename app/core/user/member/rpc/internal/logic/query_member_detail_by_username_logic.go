@@ -12,25 +12,25 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type QueryMemberDetailLogic struct {
+type QueryMemberDetailByUsernameLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewQueryMemberDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *QueryMemberDetailLogic {
-	return &QueryMemberDetailLogic{
+func NewQueryMemberDetailByUsernameLogic(ctx context.Context, svcCtx *svc.ServiceContext) *QueryMemberDetailByUsernameLogic {
+	return &QueryMemberDetailByUsernameLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-// 查询用户详情（通过id）
-func (l *QueryMemberDetailLogic) QueryMemberDetail(in *pb.QueryMemberDetailReq) (*pb.QueryMemberDetailResp, error) {
+// 查询用户详情（通过用户名）
+func (l *QueryMemberDetailByUsernameLogic) QueryMemberDetailByUsername(in *pb.QueryMemberDetailByUsernameReq) (*pb.QueryMemberDetailByUsernameResp, error) {
 	var entity model.SysMember
-	result := &pb.QueryMemberDetailResp{}
-	err := l.svcCtx.DB.Where("id = ?", in.Id).
+	result := &pb.QueryMemberDetailByUsernameResp{}
+	err := l.svcCtx.DB.Where("username = ?", in.Username).
 		First(&entity).Error
 
 	err = copier.Copy(result, &entity)

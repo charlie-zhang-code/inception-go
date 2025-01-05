@@ -3,15 +3,18 @@ package svc
 import (
 	"authn/rpc/internal/config"
 	"github.com/zeromicro/go-zero/core/stores/redis"
+	"github.com/zeromicro/go-zero/zrpc"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"member/rpc/member"
 	"time"
 )
 
 type ServiceContext struct {
-	Config config.Config
-	DB     *gorm.DB
-	Cache  *redis.Redis
+	Config        config.Config
+	DB            *gorm.DB
+	Cache         *redis.Redis
+	MemberService member.Member
 }
 
 func NewServiceContext(c config.Config) *ServiceContext {
@@ -31,8 +34,9 @@ func NewServiceContext(c config.Config) *ServiceContext {
 	})
 
 	return &ServiceContext{
-		Config: c,
-		DB:     db,
-		Cache:  cache,
+		Config:        c,
+		DB:            db,
+		Cache:         cache,
+		MemberService: member.NewMember(zrpc.MustNewClient(c.MemberRpc)),
 	}
 }

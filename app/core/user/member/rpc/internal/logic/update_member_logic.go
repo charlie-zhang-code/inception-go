@@ -4,12 +4,14 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/zeromicro/go-zero/core/logx"
 	"gorm.io/gorm"
 	"member/proto/model"
+	"time"
+
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
-	"time"
+
+	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type UpdateMemberLogic struct {

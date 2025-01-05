@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gorm.io/gorm"
 	"member/proto/model"
+
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
 
@@ -39,5 +40,8 @@ func (l *DeleteMemberLogic) DeleteMember(in *pb.DeleteMemberReq) (*pb.DeleteMemb
 		}
 		return nil
 	})
-	return &pb.DeleteMemberResp{}, err
+	return &pb.DeleteMemberResp{
+		Code:    200,
+		Message: "success",
+	}, err
 }
