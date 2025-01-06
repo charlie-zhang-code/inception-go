@@ -17,15 +17,11 @@ message AddMemberReq {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 14; //对记录的备注信息，如特殊说明等
+  string create_at = 15; //记录创建的时间戳
+  string create_by = 16; //创建该记录的用户标识符
 }
 
 message AddMemberResp {
@@ -56,15 +52,11 @@ message UpdateMemberReq {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 14; //对记录的备注信息，如特殊说明等
+  string update_at = 17; //记录最后更新的时间戳
+  string update_by = 18; //最后更新该记录的用户标识符
 }
 
 message UpdateMemberResp {
@@ -74,7 +66,7 @@ message UpdateMemberResp {
 
 // 更新用户状态
 message UpdateMemberStatusReq {
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
 
 }
 
@@ -100,17 +92,13 @@ message QueryMemberDetailResp {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 14; //对记录的备注信息，如特殊说明等
+  string create_at = 15; //记录创建的时间戳
+  string create_by = 16; //创建该记录的用户标识符
+  string update_at = 17; //记录最后更新的时间戳
+  string update_by = 18; //最后更新该记录的用户标识符
 }
 
 // 分页查询用户列表
@@ -126,14 +114,10 @@ message QueryPageMemberListReq {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  int64 page_num = 18; //第几页
-  int64 page_size = 19; //每页的数量
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int64 page_num = 14; //第几页
+  int64 page_size = 15; //每页的数量
 }
 
 message PageMemberListData {
@@ -148,17 +132,13 @@ message PageMemberListData {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 14; //对记录的备注信息，如特殊说明等
+  string create_at = 15; //记录创建的时间戳
+  string create_by = 16; //创建该记录的用户标识符
+  string update_at = 17; //记录最后更新的时间戳
+  string update_by = 18; //最后更新该记录的用户标识符
 }
 
 message QueryPageMemberListResp {
@@ -179,12 +159,8 @@ message QueryMemberListReq {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
 }
 
 message MemberListData {
@@ -199,17 +175,13 @@ message MemberListData {
   int32 gender = 9; //用户的性别，0表示保密，1表示男性，2表示女性
   string email = 10; //用户的电子邮件地址，可用于找回密码或接收通知
   string telephone = 11; //用户的联系电话，可用于身份验证或联系用户
-  string login_at = 12; //用户最近一次登录的时间戳
-  string login_ip = 13; //用户最近一次登录的IP地址
-  string login_region = 14; //用户最近一次登录的IP地址所属的地理位置
-  string login_os = 15; //用户最近一次登录的操作系统
-  int32 status = 16; //状态，0表示禁用，1表示正常启用
-  int32 deleted = 17; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
-  string remark = 18; //对记录的备注信息，如特殊说明等
-  string create_at = 19; //记录创建的时间戳
-  string create_by = 20; //创建该记录的用户标识符
-  string update_at = 21; //记录最后更新的时间戳
-  string update_by = 22; //最后更新该记录的用户标识符
+  int32 status = 12; //状态，0表示禁用，1表示正常启用
+  int32 deleted = 13; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 14; //对记录的备注信息，如特殊说明等
+  string create_at = 15; //记录创建的时间戳
+  string create_by = 16; //创建该记录的用户标识符
+  string update_at = 17; //记录最后更新的时间戳
+  string update_by = 18; //最后更新该记录的用户标识符
 }
 
 message QueryMemberListResp {
