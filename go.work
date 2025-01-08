@@ -1,0 +1,14 @@
+go 1.23.4
+
+use (
+	./app/core/user/authn
+	./app/core/user/member
+	./app/core/user/role
+	./app/core/user/group
+	./app/core/user/status
+
+	./app/unit/sandbox/codebox
+
+	./app/std/convert
+	./app/std/ntoken
+)

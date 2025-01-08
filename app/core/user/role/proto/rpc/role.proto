@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package role;
+
+option go_package = "./pb";
+
+// 添加角色
+message AddRoleReq {
+  string name = 1; //角色名称
+  string code = 2; //角色编码
+  string scope = 3; //角色范围
+  int64 sort = 4; //排序
+  int64 status = 5; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 6; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 7; //对记录的备注信息，如特殊说明等
+  string create_by = 8; //创建该记录的用户标识符
+}
+
+message AddRoleResp {
+  int64 code = 1;
+  string message = 2;
+}
+
+// 删除角色
+message DeleteRoleReq {
+  repeated int64 ids = 1;
+}
+
+message DeleteRoleResp {
+  int64 code = 1;
+  string message = 2;
+}
+
+// 更新角色
+message UpdateRoleReq {
+  int64 id = 1; //角色唯一标识符，主键
+  string name = 2; //角色名称
+  string code = 3; //角色编码
+  string scope = 4; //角色范围
+  int64 sort = 5; //排序
+  int64 status = 6; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 7; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 8; //对记录的备注信息，如特殊说明等
+  string update_by = 9; //最后更新该记录的用户标识符
+}
+
+message UpdateRoleResp {
+  int64 code = 1;
+  string message = 2;
+}
+
+// 更新角色状态
+message UpdateRoleStatusReq {
+  int64 status = 1; //状态，0表示禁用，1表示正常启用
+}
+
+message UpdateRoleStatusResp {
+  int64 code = 1;
+  string message = 2;
+}
+
+// 查询角色详情
+message QueryRoleDetailReq {
+  int64 id = 1;
+}
+
+message QueryRoleDetailResp {
+  int64 id = 1; //角色唯一标识符，主键
+  string name = 2; //角色名称
+  string code = 3; //角色编码
+  string scope = 4; //角色范围
+  int64 sort = 5; //排序
+  int64 status = 6; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 7; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 8; //对记录的备注信息，如特殊说明等
+  string create_at = 9; //记录创建的时间戳
+  string create_by = 10; //创建该记录的用户标识符
+  string update_at = 11; //记录最后更新的时间戳
+  string update_by = 12; //最后更新该记录的用户标识符
+}
+
+// 分页查询角色列表
+message QueryPageRoleListReq {
+  int64 page_num = 1; //第几页
+  int64 page_size = 2; //每页的数量
+}
+
+message PageRoleListData {
+  int64 id = 1; //角色唯一标识符，主键
+  string name = 2; //角色名称
+  string code = 3; //角色编码
+  string scope = 4; //角色范围
+  int64 sort = 5; //排序
+  int64 status = 6; //状态，0表示禁用，1表示正常启用
+  int64 deleted = 7; //逻辑删除标志，0表示未删除，1表示已删除，允许数据恢复
+  string remark = 8; //对记录的备注信息，如特殊说明等
+  string create_at = 9; //记录创建的时间戳
+  string create_by = 10; //创建该记录的用户标识符
+  string update_at = 11; //记录最后更新的时间戳
+  string update_by = 12; //最后更新该记录的用户标识符
+}
+
+message QueryPageRoleListResp {
+  int64 total = 1;
+  repeated  PageRoleListData list = 2;
+}
+
+// 分页查询角色列表
+message QueryKeywordPageRoleListReq {
+  int64 page_num = 1; //第几页
+  int64 page_size = 2; //每页的数量
+  string keyword = 3;
+}
+
+message QueryKeywordPageRoleListResp {
+  int64 total = 1;
+  repeated  PageRoleListData list = 2;
+}
+
+service Role {
+  // 添加角色
+  rpc AddRole(AddRoleReq) returns (AddRoleResp){}
+  // 删除角色
+  rpc DeleteRole(DeleteRoleReq) returns (DeleteRoleResp){}
+  // 更新角色
+  rpc UpdateRole(UpdateRoleReq) returns (UpdateRoleResp){}
+  // 更新角色状态
+  rpc UpdateRoleStatus(UpdateRoleStatusReq) returns (UpdateRoleStatusResp){}
+  // 查询角色详情
+  rpc QueryRoleDetail(QueryRoleDetailReq) returns (QueryRoleDetailResp){}
+  // 查询角色分页列表
+  rpc QueryPageRoleList(QueryPageRoleListReq) returns (QueryPageRoleListResp){}
+  // 查询关键字角色分页列表
+  rpc QueryKeywordPageRoleList(QueryKeywordPageRoleListReq) returns (QueryKeywordPageRoleListResp){}
+}

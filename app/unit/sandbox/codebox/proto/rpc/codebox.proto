@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package codebox;
+
+option go_package = "./pb";
+
+// 文件
+message File {
+  string name = 1; // 文件名
+  bytes content = 2; // 文件内容
+}
+
+// 资源限制
+message ResourceLimits {
+  int32 time_limit_ms = 1; // 时间限制
+  int64 memory_limit_kb = 2; // 内存限制
+  int32 process_limit = 3; // 进程限制
+  int64 stack_limit_kb = 4; // 栈限制
+}
+
+// 环境变量
+message EnvironmentVariable {
+  string key = 1; // 环境变量名
+  string value = 2; // 环境变量
+}
+
+// 编译请求
+message CompileReq {
+  repeated File files = 1; // 文件列表
+  string language = 2; // 编译语言
+  string compiler_options = 3; // 编译选项
+  repeated ResourceLimits limits = 4; // 资源限制
+}
+
+// 编译响应
+message CompileResp {
+  bool success = 1; // 是否成功
+  string output = 2; // 输出
+  string error_output = 3; // 错误输出
+  string error_message = 4; // 错误信息
+  int32 exit_code = 5; // 退出码
+  int32 signal = 6; // 信号
+  int32 real_time_ms = 7; // 实际运行时间
+  int32 cpu_time_ms = 8; // CPU时间
+  int64 memory_usage_kb = 9; // 内存使用
+  string binary_id = 10; // 二进制文件ID
+  string binary_path = 11; // 二进制文件路径
+  string binary_size_kb = 12; // 二进制文件大小
+  string binary_name = 13; // 二进制文件名
+}
+
+// 运行请求
+message RunReq {
+  string binary_id = 1;
+  repeated string args = 2;
+  repeated EnvironmentVariable env_vars = 3;
+  ResourceLimits limits = 4;
+}
+
+// 运行响应
+message RunResp {
+  bool success = 1; // 是否成功
+  string output = 2; // 输出
+  string error_output = 3; // 错误输出
+  string error_message = 4; // 错误信息
+  int32 exit_code = 5; // 退出码
+  int32 signal = 6; // 信号
+  int32 real_time_ms = 7; // 实际运行时间
+  int32 cpu_time_ms = 8; // CPU时间
+  int64 memory_usage_kb = 9; // 内存使用
+}
+
+service Codebox {
+  // 编译，传入文件列表，返回编译结果
+  rpc Compile(CompileReq) returns (CompileResp);
+  // 运行，传入二进制文件ID，返回运行结果
+  rpc Run(RunReq) returns (RunResp);
+}
