@@ -24,61 +24,37 @@ func NewMemberServer(svcCtx *svc.ServiceContext) *MemberServer {
 }
 
 // 添加用户
-func (s *MemberServer) AddMember(ctx context.Context, in *pb.AddMemberReq) (*pb.AddMemberResp, error) {
-	l := logic.NewAddMemberLogic(ctx, s.svcCtx)
-	return l.AddMember(in)
-}
-
-// 添加用户
-func (s *MemberServer) AddMemberWithUsernamePassword(ctx context.Context, in *pb.AddMemberWithUsernamePasswordReq) (*pb.AddMemberWithUsernamePasswordResp, error) {
-	l := logic.NewAddMemberWithUsernamePasswordLogic(ctx, s.svcCtx)
-	return l.AddMemberWithUsernamePassword(in)
+func (s *MemberServer) CreateMember(ctx context.Context, in *pb.MemberData) (*pb.CodeMessageResult, error) {
+	l := logic.NewCreateMemberLogic(ctx, s.svcCtx)
+	return l.CreateMember(in)
 }
 
 // 删除用户
-func (s *MemberServer) DeleteMember(ctx context.Context, in *pb.DeleteMemberReq) (*pb.DeleteMemberResp, error) {
+func (s *MemberServer) DeleteMember(ctx context.Context, in *pb.DeleteMemberIds) (*pb.CodeMessageResult, error) {
 	l := logic.NewDeleteMemberLogic(ctx, s.svcCtx)
 	return l.DeleteMember(in)
 }
 
 // 更新用户
-func (s *MemberServer) UpdateMember(ctx context.Context, in *pb.UpdateMemberReq) (*pb.UpdateMemberResp, error) {
+func (s *MemberServer) UpdateMember(ctx context.Context, in *pb.MemberData) (*pb.CodeMessageResult, error) {
 	l := logic.NewUpdateMemberLogic(ctx, s.svcCtx)
 	return l.UpdateMember(in)
 }
 
-// 更新用户状态
-func (s *MemberServer) UpdateMemberStatus(ctx context.Context, in *pb.UpdateMemberStatusReq) (*pb.UpdateMemberStatusResp, error) {
-	l := logic.NewUpdateMemberStatusLogic(ctx, s.svcCtx)
-	return l.UpdateMemberStatus(in)
-}
-
 // 查询用户详情（通过id）
-func (s *MemberServer) QueryMemberDetail(ctx context.Context, in *pb.QueryMemberDetailReq) (*pb.QueryMemberDetailResp, error) {
-	l := logic.NewQueryMemberDetailLogic(ctx, s.svcCtx)
-	return l.QueryMemberDetail(in)
-}
-
-// 查询用户详情（通过用户唯一标识）
-func (s *MemberServer) QueryMemberDetailByIdentify(ctx context.Context, in *pb.QueryMemberDetailByIdentifyReq) (*pb.QueryMemberDetailByIdentifyResp, error) {
-	l := logic.NewQueryMemberDetailByIdentifyLogic(ctx, s.svcCtx)
-	return l.QueryMemberDetailByIdentify(in)
+func (s *MemberServer) GetMemberDetailById(ctx context.Context, in *pb.QueryMemberDetailById) (*pb.MemberData, error) {
+	l := logic.NewGetMemberDetailByIdLogic(ctx, s.svcCtx)
+	return l.GetMemberDetailById(in)
 }
 
 // 查询用户详情（通过用户名）
-func (s *MemberServer) QueryMemberDetailByUsername(ctx context.Context, in *pb.QueryMemberDetailByUsernameReq) (*pb.QueryMemberDetailByUsernameResp, error) {
-	l := logic.NewQueryMemberDetailByUsernameLogic(ctx, s.svcCtx)
-	return l.QueryMemberDetailByUsername(in)
+func (s *MemberServer) GetMemberDetailByUsername(ctx context.Context, in *pb.QueryMemberDetailByUsername) (*pb.MemberData, error) {
+	l := logic.NewGetMemberDetailByUsernameLogic(ctx, s.svcCtx)
+	return l.GetMemberDetailByUsername(in)
 }
 
 // 查询用户分页列表
-func (s *MemberServer) QueryPageMemberList(ctx context.Context, in *pb.QueryPageMemberListReq) (*pb.QueryPageMemberListResp, error) {
-	l := logic.NewQueryPageMemberListLogic(ctx, s.svcCtx)
-	return l.QueryPageMemberList(in)
-}
-
-// 查询关键字用户分页列表
-func (s *MemberServer) QueryKeywordPageMemberList(ctx context.Context, in *pb.QueryKeywordPageMemberListReq) (*pb.QueryKeywordPageMemberListResp, error) {
-	l := logic.NewQueryKeywordPageMemberListLogic(ctx, s.svcCtx)
-	return l.QueryKeywordPageMemberList(in)
+func (s *MemberServer) GetKeywordPageMemberList(ctx context.Context, in *pb.QueryPageMemberList) (*pb.QueryPageMemberListResult, error) {
+	l := logic.NewGetKeywordPageMemberListLogic(ctx, s.svcCtx)
+	return l.GetKeywordPageMemberList(in)
 }

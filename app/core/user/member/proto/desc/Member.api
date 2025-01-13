@@ -8,7 +8,6 @@ type (
     // 添加用户请求参数
     AddMemberReq {
         Id int64 `json:"id"`                       //用户唯一标识符，主键
-        Identify string `json:"identify"`          //用户的唯一标识符
         Username string `json:"username"`          //用户登录时使用的用户名
         Password string `json:"password"`          //用户账户的密码，应存储加密后的值
         Nickname string `json:"nickname,optional"` //用户在系统中显示的名字，可选
@@ -40,7 +39,6 @@ Message string `json:"message"`
     // 更新用户请求参数
 UpdateMemberReq {
 Id int64 `json:"id"` //用户唯一标识符，主键
-Identify string `json:"identify"` //用户的唯一标识符
 Username string `json:"username"` //用户登录时使用的用户名
 Password string `json:"password"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname,optional"` //用户在系统中显示的名字，可选
@@ -75,7 +73,6 @@ Id         int64  `form:"id"`
 }
 QueryMemberDetailData {
 Id int64 `json:"id"` //用户唯一标识符，主键
-Identify string `json:"identify"` //用户的唯一标识符
 Username string `json:"username"` //用户登录时使用的用户名
 Password string `json:"password"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname"` //用户在系统中显示的名字，可选
@@ -105,7 +102,6 @@ QueryPageMemberListReq {
 Current         int64  `form:"current,default=1"` //第几页
 PageSize        int64  `form:"pageSize,default=20"` //每页的数量
 Id int64 `json:"id,optional"` //用户唯一标识符，主键
-Identify string `json:"identify,optional"` //用户的唯一标识符
 Username string `json:"username,optional"` //用户登录时使用的用户名
 Password string `json:"password,optional"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname,optional"` //用户在系统中显示的名字，可选
@@ -121,7 +117,6 @@ Deleted int32 `json:"deleted,optional"` //逻辑删除标志，0表示未删除�
 }
 QueryPageMemberListData {
 Id int64 `json:"id"` //用户唯一标识符，主键
-Identify string `json:"identify"` //用户的唯一标识符
 Username string `json:"username"` //用户登录时使用的用户名
 Password string `json:"password"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname"` //用户在系统中显示的名字，可选
@@ -153,7 +148,6 @@ Total    int64               `json:"total"`
     // 查询用户所有列表请求参数
 QueryMemberListReq {
 Id int64 `json:"id,optional"` //用户唯一标识符，主键
-Identify string `json:"identify,optional"` //用户的唯一标识符
 Username string `json:"username,optional"` //用户登录时使用的用户名
 Password string `json:"password,optional"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname,optional"` //用户在系统中显示的名字，可选
@@ -169,7 +163,6 @@ Deleted int32 `json:"deleted,optional"` //逻辑删除标志，0表示未删除�
 }
 QueryMemberListData {
 Id int64 `json:"id"` //用户唯一标识符，主键
-Identify string `json:"identify"` //用户的唯一标识符
 Username string `json:"username"` //用户登录时使用的用户名
 Password string `json:"password"` //用户账户的密码，应存储加密后的值
 Nickname string `json:"nickname"` //用户在系统中显示的名字，可选

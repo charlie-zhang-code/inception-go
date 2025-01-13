@@ -19,44 +19,32 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Member_AddMember_FullMethodName                     = "/member.Member/AddMember"
-	Member_AddMemberWithUsernamePassword_FullMethodName = "/member.Member/AddMemberWithUsernamePassword"
-	Member_DeleteMember_FullMethodName                  = "/member.Member/DeleteMember"
-	Member_UpdateMember_FullMethodName                  = "/member.Member/UpdateMember"
-	Member_UpdateMemberStatus_FullMethodName            = "/member.Member/UpdateMemberStatus"
-	Member_QueryMemberDetail_FullMethodName             = "/member.Member/QueryMemberDetail"
-	Member_QueryMemberDetailByIdentify_FullMethodName   = "/member.Member/QueryMemberDetailByIdentify"
-	Member_QueryMemberDetailByUsername_FullMethodName   = "/member.Member/QueryMemberDetailByUsername"
-	Member_QueryPageMemberList_FullMethodName           = "/member.Member/QueryPageMemberList"
-	Member_QueryKeywordPageMemberList_FullMethodName    = "/member.Member/QueryKeywordPageMemberList"
+	Member_CreateMember_FullMethodName              = "/member.Member/CreateMember"
+	Member_DeleteMember_FullMethodName              = "/member.Member/DeleteMember"
+	Member_UpdateMember_FullMethodName              = "/member.Member/UpdateMember"
+	Member_GetMemberDetailById_FullMethodName       = "/member.Member/GetMemberDetailById"
+	Member_GetMemberDetailByUsername_FullMethodName = "/member.Member/GetMemberDetailByUsername"
+	Member_GetKeywordPageMemberList_FullMethodName  = "/member.Member/GetKeywordPageMemberList"
 )
 
 // MemberClient is the client API for Member service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// 用户
+// 用户基础信息服务
 type MemberClient interface {
 	// 添加用户
-	AddMember(ctx context.Context, in *AddMemberReq, opts ...grpc.CallOption) (*AddMemberResp, error)
-	// 添加用户
-	AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error)
+	CreateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error)
 	// 删除用户
-	DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error)
+	DeleteMember(ctx context.Context, in *DeleteMemberIds, opts ...grpc.CallOption) (*CodeMessageResult, error)
 	// 更新用户
-	UpdateMember(ctx context.Context, in *UpdateMemberReq, opts ...grpc.CallOption) (*UpdateMemberResp, error)
-	// 更新用户状态
-	UpdateMemberStatus(ctx context.Context, in *UpdateMemberStatusReq, opts ...grpc.CallOption) (*UpdateMemberStatusResp, error)
+	UpdateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error)
 	// 查询用户详情（通过id）
-	QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error)
-	// 查询用户详情（通过用户唯一标识）
-	QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error)
+	GetMemberDetailById(ctx context.Context, in *QueryMemberDetailById, opts ...grpc.CallOption) (*MemberData, error)
 	// 查询用户详情（通过用户名）
-	QueryMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsernameReq, opts ...grpc.CallOption) (*QueryMemberDetailByUsernameResp, error)
+	GetMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsername, opts ...grpc.CallOption) (*MemberData, error)
 	// 查询用户分页列表
-	QueryPageMemberList(ctx context.Context, in *QueryPageMemberListReq, opts ...grpc.CallOption) (*QueryPageMemberListResp, error)
-	// 查询关键字用户分页列表
-	QueryKeywordPageMemberList(ctx context.Context, in *QueryKeywordPageMemberListReq, opts ...grpc.CallOption) (*QueryKeywordPageMemberListResp, error)
+	GetKeywordPageMemberList(ctx context.Context, in *QueryPageMemberList, opts ...grpc.CallOption) (*QueryPageMemberListResult, error)
 }
 
 type memberClient struct {
@@ -67,29 +55,19 @@ func NewMemberClient(cc grpc.ClientConnInterface) MemberClient {
 	return &memberClient{cc}
 }
 
-func (c *memberClient) AddMember(ctx context.Context, in *AddMemberReq, opts ...grpc.CallOption) (*AddMemberResp, error) {
+func (c *memberClient) CreateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddMemberResp)
-	err := c.cc.Invoke(ctx, Member_AddMember_FullMethodName, in, out, cOpts...)
+	out := new(CodeMessageResult)
+	err := c.cc.Invoke(ctx, Member_CreateMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *memberClient) AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error) {
+func (c *memberClient) DeleteMember(ctx context.Context, in *DeleteMemberIds, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(AddMemberWithUsernamePasswordResp)
-	err := c.cc.Invoke(ctx, Member_AddMemberWithUsernamePassword_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberClient) DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteMemberResp)
+	out := new(CodeMessageResult)
 	err := c.cc.Invoke(ctx, Member_DeleteMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -97,9 +75,9 @@ func (c *memberClient) DeleteMember(ctx context.Context, in *DeleteMemberReq, op
 	return out, nil
 }
 
-func (c *memberClient) UpdateMember(ctx context.Context, in *UpdateMemberReq, opts ...grpc.CallOption) (*UpdateMemberResp, error) {
+func (c *memberClient) UpdateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateMemberResp)
+	out := new(CodeMessageResult)
 	err := c.cc.Invoke(ctx, Member_UpdateMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -107,60 +85,30 @@ func (c *memberClient) UpdateMember(ctx context.Context, in *UpdateMemberReq, op
 	return out, nil
 }
 
-func (c *memberClient) UpdateMemberStatus(ctx context.Context, in *UpdateMemberStatusReq, opts ...grpc.CallOption) (*UpdateMemberStatusResp, error) {
+func (c *memberClient) GetMemberDetailById(ctx context.Context, in *QueryMemberDetailById, opts ...grpc.CallOption) (*MemberData, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateMemberStatusResp)
-	err := c.cc.Invoke(ctx, Member_UpdateMemberStatus_FullMethodName, in, out, cOpts...)
+	out := new(MemberData)
+	err := c.cc.Invoke(ctx, Member_GetMemberDetailById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *memberClient) QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error) {
+func (c *memberClient) GetMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsername, opts ...grpc.CallOption) (*MemberData, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryMemberDetailResp)
-	err := c.cc.Invoke(ctx, Member_QueryMemberDetail_FullMethodName, in, out, cOpts...)
+	out := new(MemberData)
+	err := c.cc.Invoke(ctx, Member_GetMemberDetailByUsername_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *memberClient) QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error) {
+func (c *memberClient) GetKeywordPageMemberList(ctx context.Context, in *QueryPageMemberList, opts ...grpc.CallOption) (*QueryPageMemberListResult, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryMemberDetailByIdentifyResp)
-	err := c.cc.Invoke(ctx, Member_QueryMemberDetailByIdentify_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberClient) QueryMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsernameReq, opts ...grpc.CallOption) (*QueryMemberDetailByUsernameResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryMemberDetailByUsernameResp)
-	err := c.cc.Invoke(ctx, Member_QueryMemberDetailByUsername_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberClient) QueryPageMemberList(ctx context.Context, in *QueryPageMemberListReq, opts ...grpc.CallOption) (*QueryPageMemberListResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryPageMemberListResp)
-	err := c.cc.Invoke(ctx, Member_QueryPageMemberList_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *memberClient) QueryKeywordPageMemberList(ctx context.Context, in *QueryKeywordPageMemberListReq, opts ...grpc.CallOption) (*QueryKeywordPageMemberListResp, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(QueryKeywordPageMemberListResp)
-	err := c.cc.Invoke(ctx, Member_QueryKeywordPageMemberList_FullMethodName, in, out, cOpts...)
+	out := new(QueryPageMemberListResult)
+	err := c.cc.Invoke(ctx, Member_GetKeywordPageMemberList_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -171,28 +119,20 @@ func (c *memberClient) QueryKeywordPageMemberList(ctx context.Context, in *Query
 // All implementations must embed UnimplementedMemberServer
 // for forward compatibility.
 //
-// 用户
+// 用户基础信息服务
 type MemberServer interface {
 	// 添加用户
-	AddMember(context.Context, *AddMemberReq) (*AddMemberResp, error)
-	// 添加用户
-	AddMemberWithUsernamePassword(context.Context, *AddMemberWithUsernamePasswordReq) (*AddMemberWithUsernamePasswordResp, error)
+	CreateMember(context.Context, *MemberData) (*CodeMessageResult, error)
 	// 删除用户
-	DeleteMember(context.Context, *DeleteMemberReq) (*DeleteMemberResp, error)
+	DeleteMember(context.Context, *DeleteMemberIds) (*CodeMessageResult, error)
 	// 更新用户
-	UpdateMember(context.Context, *UpdateMemberReq) (*UpdateMemberResp, error)
-	// 更新用户状态
-	UpdateMemberStatus(context.Context, *UpdateMemberStatusReq) (*UpdateMemberStatusResp, error)
+	UpdateMember(context.Context, *MemberData) (*CodeMessageResult, error)
 	// 查询用户详情（通过id）
-	QueryMemberDetail(context.Context, *QueryMemberDetailReq) (*QueryMemberDetailResp, error)
-	// 查询用户详情（通过用户唯一标识）
-	QueryMemberDetailByIdentify(context.Context, *QueryMemberDetailByIdentifyReq) (*QueryMemberDetailByIdentifyResp, error)
+	GetMemberDetailById(context.Context, *QueryMemberDetailById) (*MemberData, error)
 	// 查询用户详情（通过用户名）
-	QueryMemberDetailByUsername(context.Context, *QueryMemberDetailByUsernameReq) (*QueryMemberDetailByUsernameResp, error)
+	GetMemberDetailByUsername(context.Context, *QueryMemberDetailByUsername) (*MemberData, error)
 	// 查询用户分页列表
-	QueryPageMemberList(context.Context, *QueryPageMemberListReq) (*QueryPageMemberListResp, error)
-	// 查询关键字用户分页列表
-	QueryKeywordPageMemberList(context.Context, *QueryKeywordPageMemberListReq) (*QueryKeywordPageMemberListResp, error)
+	GetKeywordPageMemberList(context.Context, *QueryPageMemberList) (*QueryPageMemberListResult, error)
 	mustEmbedUnimplementedMemberServer()
 }
 
@@ -203,35 +143,23 @@ type MemberServer interface {
 // pointer dereference when methods are called.
 type UnimplementedMemberServer struct{}
 
-func (UnimplementedMemberServer) AddMember(context.Context, *AddMemberReq) (*AddMemberResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddMember not implemented")
+func (UnimplementedMemberServer) CreateMember(context.Context, *MemberData) (*CodeMessageResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMember not implemented")
 }
-func (UnimplementedMemberServer) AddMemberWithUsernamePassword(context.Context, *AddMemberWithUsernamePasswordReq) (*AddMemberWithUsernamePasswordResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddMemberWithUsernamePassword not implemented")
-}
-func (UnimplementedMemberServer) DeleteMember(context.Context, *DeleteMemberReq) (*DeleteMemberResp, error) {
+func (UnimplementedMemberServer) DeleteMember(context.Context, *DeleteMemberIds) (*CodeMessageResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMember not implemented")
 }
-func (UnimplementedMemberServer) UpdateMember(context.Context, *UpdateMemberReq) (*UpdateMemberResp, error) {
+func (UnimplementedMemberServer) UpdateMember(context.Context, *MemberData) (*CodeMessageResult, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMember not implemented")
 }
-func (UnimplementedMemberServer) UpdateMemberStatus(context.Context, *UpdateMemberStatusReq) (*UpdateMemberStatusResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMemberStatus not implemented")
+func (UnimplementedMemberServer) GetMemberDetailById(context.Context, *QueryMemberDetailById) (*MemberData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMemberDetailById not implemented")
 }
-func (UnimplementedMemberServer) QueryMemberDetail(context.Context, *QueryMemberDetailReq) (*QueryMemberDetailResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryMemberDetail not implemented")
+func (UnimplementedMemberServer) GetMemberDetailByUsername(context.Context, *QueryMemberDetailByUsername) (*MemberData, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMemberDetailByUsername not implemented")
 }
-func (UnimplementedMemberServer) QueryMemberDetailByIdentify(context.Context, *QueryMemberDetailByIdentifyReq) (*QueryMemberDetailByIdentifyResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryMemberDetailByIdentify not implemented")
-}
-func (UnimplementedMemberServer) QueryMemberDetailByUsername(context.Context, *QueryMemberDetailByUsernameReq) (*QueryMemberDetailByUsernameResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryMemberDetailByUsername not implemented")
-}
-func (UnimplementedMemberServer) QueryPageMemberList(context.Context, *QueryPageMemberListReq) (*QueryPageMemberListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryPageMemberList not implemented")
-}
-func (UnimplementedMemberServer) QueryKeywordPageMemberList(context.Context, *QueryKeywordPageMemberListReq) (*QueryKeywordPageMemberListResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method QueryKeywordPageMemberList not implemented")
+func (UnimplementedMemberServer) GetKeywordPageMemberList(context.Context, *QueryPageMemberList) (*QueryPageMemberListResult, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKeywordPageMemberList not implemented")
 }
 func (UnimplementedMemberServer) mustEmbedUnimplementedMemberServer() {}
 func (UnimplementedMemberServer) testEmbeddedByValue()                {}
@@ -254,44 +182,26 @@ func RegisterMemberServer(s grpc.ServiceRegistrar, srv MemberServer) {
 	s.RegisterService(&Member_ServiceDesc, srv)
 }
 
-func _Member_AddMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddMemberReq)
+func _Member_CreateMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MemberData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MemberServer).AddMember(ctx, in)
+		return srv.(MemberServer).CreateMember(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Member_AddMember_FullMethodName,
+		FullMethod: Member_CreateMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).AddMember(ctx, req.(*AddMemberReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Member_AddMemberWithUsernamePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddMemberWithUsernamePasswordReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServer).AddMemberWithUsernamePassword(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Member_AddMemberWithUsernamePassword_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).AddMemberWithUsernamePassword(ctx, req.(*AddMemberWithUsernamePasswordReq))
+		return srv.(MemberServer).CreateMember(ctx, req.(*MemberData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Member_DeleteMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteMemberReq)
+	in := new(DeleteMemberIds)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -303,13 +213,13 @@ func _Member_DeleteMember_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Member_DeleteMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).DeleteMember(ctx, req.(*DeleteMemberReq))
+		return srv.(MemberServer).DeleteMember(ctx, req.(*DeleteMemberIds))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Member_UpdateMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMemberReq)
+	in := new(MemberData)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -321,115 +231,61 @@ func _Member_UpdateMember_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Member_UpdateMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).UpdateMember(ctx, req.(*UpdateMemberReq))
+		return srv.(MemberServer).UpdateMember(ctx, req.(*MemberData))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Member_UpdateMemberStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMemberStatusReq)
+func _Member_GetMemberDetailById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryMemberDetailById)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MemberServer).UpdateMemberStatus(ctx, in)
+		return srv.(MemberServer).GetMemberDetailById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Member_UpdateMemberStatus_FullMethodName,
+		FullMethod: Member_GetMemberDetailById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).UpdateMemberStatus(ctx, req.(*UpdateMemberStatusReq))
+		return srv.(MemberServer).GetMemberDetailById(ctx, req.(*QueryMemberDetailById))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Member_QueryMemberDetail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryMemberDetailReq)
+func _Member_GetMemberDetailByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryMemberDetailByUsername)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MemberServer).QueryMemberDetail(ctx, in)
+		return srv.(MemberServer).GetMemberDetailByUsername(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Member_QueryMemberDetail_FullMethodName,
+		FullMethod: Member_GetMemberDetailByUsername_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).QueryMemberDetail(ctx, req.(*QueryMemberDetailReq))
+		return srv.(MemberServer).GetMemberDetailByUsername(ctx, req.(*QueryMemberDetailByUsername))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Member_QueryMemberDetailByIdentify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryMemberDetailByIdentifyReq)
+func _Member_GetKeywordPageMemberList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryPageMemberList)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MemberServer).QueryMemberDetailByIdentify(ctx, in)
+		return srv.(MemberServer).GetKeywordPageMemberList(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Member_QueryMemberDetailByIdentify_FullMethodName,
+		FullMethod: Member_GetKeywordPageMemberList_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).QueryMemberDetailByIdentify(ctx, req.(*QueryMemberDetailByIdentifyReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Member_QueryMemberDetailByUsername_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryMemberDetailByUsernameReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServer).QueryMemberDetailByUsername(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Member_QueryMemberDetailByUsername_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).QueryMemberDetailByUsername(ctx, req.(*QueryMemberDetailByUsernameReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Member_QueryPageMemberList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryPageMemberListReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServer).QueryPageMemberList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Member_QueryPageMemberList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).QueryPageMemberList(ctx, req.(*QueryPageMemberListReq))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Member_QueryKeywordPageMemberList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(QueryKeywordPageMemberListReq)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MemberServer).QueryKeywordPageMemberList(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Member_QueryKeywordPageMemberList_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MemberServer).QueryKeywordPageMemberList(ctx, req.(*QueryKeywordPageMemberListReq))
+		return srv.(MemberServer).GetKeywordPageMemberList(ctx, req.(*QueryPageMemberList))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -442,12 +298,8 @@ var Member_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MemberServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddMember",
-			Handler:    _Member_AddMember_Handler,
-		},
-		{
-			MethodName: "AddMemberWithUsernamePassword",
-			Handler:    _Member_AddMemberWithUsernamePassword_Handler,
+			MethodName: "CreateMember",
+			Handler:    _Member_CreateMember_Handler,
 		},
 		{
 			MethodName: "DeleteMember",
@@ -458,28 +310,16 @@ var Member_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Member_UpdateMember_Handler,
 		},
 		{
-			MethodName: "UpdateMemberStatus",
-			Handler:    _Member_UpdateMemberStatus_Handler,
+			MethodName: "GetMemberDetailById",
+			Handler:    _Member_GetMemberDetailById_Handler,
 		},
 		{
-			MethodName: "QueryMemberDetail",
-			Handler:    _Member_QueryMemberDetail_Handler,
+			MethodName: "GetMemberDetailByUsername",
+			Handler:    _Member_GetMemberDetailByUsername_Handler,
 		},
 		{
-			MethodName: "QueryMemberDetailByIdentify",
-			Handler:    _Member_QueryMemberDetailByIdentify_Handler,
-		},
-		{
-			MethodName: "QueryMemberDetailByUsername",
-			Handler:    _Member_QueryMemberDetailByUsername_Handler,
-		},
-		{
-			MethodName: "QueryPageMemberList",
-			Handler:    _Member_QueryPageMemberList_Handler,
-		},
-		{
-			MethodName: "QueryKeywordPageMemberList",
-			Handler:    _Member_QueryKeywordPageMemberList_Handler,
+			MethodName: "GetKeywordPageMemberList",
+			Handler:    _Member_GetKeywordPageMemberList_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

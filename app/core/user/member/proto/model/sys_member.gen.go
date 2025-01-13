@@ -13,7 +13,6 @@ const TableNameSysMember = "sys_member"
 // SysMember 用户表
 type SysMember struct {
 	ID        int64     `gorm:"column:id;primaryKey;autoIncrement:true;comment:用户唯一标识符，主键" json:"id"`           // 用户唯一标识符，主键
-	Identify  string    `gorm:"column:identify;not null;comment:用户的唯一标识符" json:"identify"`                      // 用户的唯一标识符
 	Username  string    `gorm:"column:username;not null;comment:用户登录时使用的用户名" json:"username"`                   // 用户登录时使用的用户名
 	Password  string    `gorm:"column:password;not null;comment:用户账户的密码，应存储加密后的值" json:"password"`              // 用户账户的密码，应存储加密后的值
 	Nickname  string    `gorm:"column:nickname;comment:用户在系统中显示的名字，可选" json:"nickname"`                         // 用户在系统中显示的名字，可选

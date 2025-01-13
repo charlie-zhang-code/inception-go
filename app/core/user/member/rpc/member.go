@@ -3,12 +3,15 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/zeromicro/zero-contrib/zrpc/registry/consul"
+	"github.com/nacos-group/nacos-sdk-go/v2/common/constant"
+	"github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
 
 	"member/rpc/internal/config"
 	"member/rpc/internal/server"
 	"member/rpc/internal/svc"
 	"member/rpc/pb"
+
+	_ "github.com/zeromicro/zero-contrib/zrpc/registry/nacos"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -35,7 +38,22 @@ func main() {
 	})
 	defer s.Stop()
 
-	_ = consul.RegisterService(c.ListenOn, c.Consul)
+	// register service to nacos
+	sc := []constant.ServerConfig{
+		*constant.NewServerConfig(c.Nacos.Host, c.Nacos.Port),
+	}
+
+	cc := &constant.ClientConfig{
+		NamespaceId:         c.Nacos.Namespace,
+		TimeoutMs:           5000,
+		NotLoadCacheAtStart: c.Nacos.NotLoadCacheAtStart,
+		LogDir:              "/tmp/nacos/log",
+		CacheDir:            "/tmp/nacos/cache",
+		LogLevel:            c.Nacos.LogLevel,
+	}
+
+	opts := nacos.NewNacosConfig(c.Nacos.ServiceName, c.ListenOn, sc, cc)
+	_ = nacos.RegisterService(opts)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()

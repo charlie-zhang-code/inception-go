@@ -24,7 +24,11 @@ message JwtTokenResp {
   string client = 6; // 客户端标识
 }
 
-message CheckJwtTokenReq {
+message CheckAccessJwtTokenReq {
+  string token = 1;
+}
+
+message CheckRefreshJwtTokenReq {
   string token = 1;
 }
 
@@ -38,8 +42,10 @@ service JwtToken {
   rpc GetJwtTokenByUsernamePassword(UsernamePasswordReq) returns (JwtTokenResp);
   // 通过刷新令牌获取 jwt token
   rpc GetJwtTokenByRefreshToken(JwtRefreshTokenReq) returns (JwtTokenResp);
-  // 校验 jwt token
-  rpc CheckJwtToken(CheckJwtTokenReq) returns (CheckJwtTokenResp);
+  // 校验 access jwt token
+  rpc CheckAccessJwtToken(CheckAccessJwtTokenReq) returns (CheckJwtTokenResp);
+  // 校验 refresh jwt token
+  rpc CheckRefreshJwtToken(CheckRefreshJwtTokenReq) returns (CheckJwtTokenResp);
 }
 
 message OpaqueRefreshTokenReq {

@@ -11,4 +11,5 @@ use (
 
 	./app/std/convert
 	./app/std/ntoken
+	test
 )

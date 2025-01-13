@@ -9,22 +9,22 @@ import (
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
-type DeleteMemberLogic struct {
+type CreateMemberLogic struct {
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
 	logx.Logger
 }
 
-func NewDeleteMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DeleteMemberLogic {
-	return &DeleteMemberLogic{
+func NewCreateMemberLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateMemberLogic {
+	return &CreateMemberLogic{
 		ctx:    ctx,
 		svcCtx: svcCtx,
 		Logger: logx.WithContext(ctx),
 	}
 }
 
-// 删除用户
-func (l *DeleteMemberLogic) DeleteMember(in *pb.DeleteMemberIds) (*pb.CodeMessageResult, error) {
+// 添加用户
+func (l *CreateMemberLogic) CreateMember(in *pb.MemberData) (*pb.CodeMessageResult, error) {
 	// todo: add your logic here and delete this line
 
 	return &pb.CodeMessageResult{}, nil

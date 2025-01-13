@@ -2,7 +2,6 @@ package ntoken
 
 import (
 	"errors"
-	"fmt"
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
@@ -36,13 +35,11 @@ func GenerateJwt(iat int64, uid string, secretKey string, payloads map[string]in
 
 // ParseJwt TODO 解析和验证JWT
 func ParseJwt(tokenString string, secretKey string) (*CustomClaims, error) {
-	claims := &CustomClaims{}
-
-	// 使用自定义 Claims 类型进行解析
-	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	// 解析jwt，并使用提供的秘钥来验证签名
+	token, err := jwt.ParseWithClaims(tokenString, &CustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		// 检查签名方法是否匹配
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+			return nil, errors.New("unexpected signing method")
 		}
 		return []byte(secretKey), nil
 	})
@@ -51,9 +48,10 @@ func ParseJwt(tokenString string, secretKey string) (*CustomClaims, error) {
 		return nil, err
 	}
 
-	if !token.Valid {
+	// 检查token是否为nil或无效
+	if claims, ok := token.Claims.(*CustomClaims); ok && token.Valid {
+		return claims, nil
+	} else {
 		return nil, errors.New("invalid token")
 	}
-
-	return claims, nil
 }

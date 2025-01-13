@@ -14,50 +14,27 @@ import (
 )
 
 type (
-	AddMemberReq                      = pb.AddMemberReq
-	AddMemberResp                     = pb.AddMemberResp
-	AddMemberWithUsernamePasswordReq  = pb.AddMemberWithUsernamePasswordReq
-	AddMemberWithUsernamePasswordResp = pb.AddMemberWithUsernamePasswordResp
-	DeleteMemberReq                   = pb.DeleteMemberReq
-	DeleteMemberResp                  = pb.DeleteMemberResp
-	KeywordPageMemberListData         = pb.KeywordPageMemberListData
-	PageMemberListData                = pb.PageMemberListData
-	QueryKeywordPageMemberListReq     = pb.QueryKeywordPageMemberListReq
-	QueryKeywordPageMemberListResp    = pb.QueryKeywordPageMemberListResp
-	QueryMemberDetailByIdentifyReq    = pb.QueryMemberDetailByIdentifyReq
-	QueryMemberDetailByIdentifyResp   = pb.QueryMemberDetailByIdentifyResp
-	QueryMemberDetailByUsernameReq    = pb.QueryMemberDetailByUsernameReq
-	QueryMemberDetailByUsernameResp   = pb.QueryMemberDetailByUsernameResp
-	QueryMemberDetailReq              = pb.QueryMemberDetailReq
-	QueryMemberDetailResp             = pb.QueryMemberDetailResp
-	QueryPageMemberListReq            = pb.QueryPageMemberListReq
-	QueryPageMemberListResp           = pb.QueryPageMemberListResp
-	UpdateMemberReq                   = pb.UpdateMemberReq
-	UpdateMemberResp                  = pb.UpdateMemberResp
-	UpdateMemberStatusReq             = pb.UpdateMemberStatusReq
-	UpdateMemberStatusResp            = pb.UpdateMemberStatusResp
+	CodeMessageResult           = pb.CodeMessageResult
+	DeleteMemberIds             = pb.DeleteMemberIds
+	MemberData                  = pb.MemberData
+	QueryMemberDetailById       = pb.QueryMemberDetailById
+	QueryMemberDetailByUsername = pb.QueryMemberDetailByUsername
+	QueryPageMemberList         = pb.QueryPageMemberList
+	QueryPageMemberListResult   = pb.QueryPageMemberListResult
 
 	Member interface {
 		// 添加用户
-		AddMember(ctx context.Context, in *AddMemberReq, opts ...grpc.CallOption) (*AddMemberResp, error)
-		// 添加用户
-		AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error)
+		CreateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error)
 		// 删除用户
-		DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error)
+		DeleteMember(ctx context.Context, in *DeleteMemberIds, opts ...grpc.CallOption) (*CodeMessageResult, error)
 		// 更新用户
-		UpdateMember(ctx context.Context, in *UpdateMemberReq, opts ...grpc.CallOption) (*UpdateMemberResp, error)
-		// 更新用户状态
-		UpdateMemberStatus(ctx context.Context, in *UpdateMemberStatusReq, opts ...grpc.CallOption) (*UpdateMemberStatusResp, error)
+		UpdateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error)
 		// 查询用户详情（通过id）
-		QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error)
-		// 查询用户详情（通过用户唯一标识）
-		QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error)
+		GetMemberDetailById(ctx context.Context, in *QueryMemberDetailById, opts ...grpc.CallOption) (*MemberData, error)
 		// 查询用户详情（通过用户名）
-		QueryMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsernameReq, opts ...grpc.CallOption) (*QueryMemberDetailByUsernameResp, error)
+		GetMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsername, opts ...grpc.CallOption) (*MemberData, error)
 		// 查询用户分页列表
-		QueryPageMemberList(ctx context.Context, in *QueryPageMemberListReq, opts ...grpc.CallOption) (*QueryPageMemberListResp, error)
-		// 查询关键字用户分页列表
-		QueryKeywordPageMemberList(ctx context.Context, in *QueryKeywordPageMemberListReq, opts ...grpc.CallOption) (*QueryKeywordPageMemberListResp, error)
+		GetKeywordPageMemberList(ctx context.Context, in *QueryPageMemberList, opts ...grpc.CallOption) (*QueryPageMemberListResult, error)
 	}
 
 	defaultMember struct {
@@ -72,61 +49,37 @@ func NewMember(cli zrpc.Client) Member {
 }
 
 // 添加用户
-func (m *defaultMember) AddMember(ctx context.Context, in *AddMemberReq, opts ...grpc.CallOption) (*AddMemberResp, error) {
+func (m *defaultMember) CreateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
-	return client.AddMember(ctx, in, opts...)
-}
-
-// 添加用户
-func (m *defaultMember) AddMemberWithUsernamePassword(ctx context.Context, in *AddMemberWithUsernamePasswordReq, opts ...grpc.CallOption) (*AddMemberWithUsernamePasswordResp, error) {
-	client := pb.NewMemberClient(m.cli.Conn())
-	return client.AddMemberWithUsernamePassword(ctx, in, opts...)
+	return client.CreateMember(ctx, in, opts...)
 }
 
 // 删除用户
-func (m *defaultMember) DeleteMember(ctx context.Context, in *DeleteMemberReq, opts ...grpc.CallOption) (*DeleteMemberResp, error) {
+func (m *defaultMember) DeleteMember(ctx context.Context, in *DeleteMemberIds, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
 	return client.DeleteMember(ctx, in, opts...)
 }
 
 // 更新用户
-func (m *defaultMember) UpdateMember(ctx context.Context, in *UpdateMemberReq, opts ...grpc.CallOption) (*UpdateMemberResp, error) {
+func (m *defaultMember) UpdateMember(ctx context.Context, in *MemberData, opts ...grpc.CallOption) (*CodeMessageResult, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
 	return client.UpdateMember(ctx, in, opts...)
 }
 
-// 更新用户状态
-func (m *defaultMember) UpdateMemberStatus(ctx context.Context, in *UpdateMemberStatusReq, opts ...grpc.CallOption) (*UpdateMemberStatusResp, error) {
-	client := pb.NewMemberClient(m.cli.Conn())
-	return client.UpdateMemberStatus(ctx, in, opts...)
-}
-
 // 查询用户详情（通过id）
-func (m *defaultMember) QueryMemberDetail(ctx context.Context, in *QueryMemberDetailReq, opts ...grpc.CallOption) (*QueryMemberDetailResp, error) {
+func (m *defaultMember) GetMemberDetailById(ctx context.Context, in *QueryMemberDetailById, opts ...grpc.CallOption) (*MemberData, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
-	return client.QueryMemberDetail(ctx, in, opts...)
-}
-
-// 查询用户详情（通过用户唯一标识）
-func (m *defaultMember) QueryMemberDetailByIdentify(ctx context.Context, in *QueryMemberDetailByIdentifyReq, opts ...grpc.CallOption) (*QueryMemberDetailByIdentifyResp, error) {
-	client := pb.NewMemberClient(m.cli.Conn())
-	return client.QueryMemberDetailByIdentify(ctx, in, opts...)
+	return client.GetMemberDetailById(ctx, in, opts...)
 }
 
 // 查询用户详情（通过用户名）
-func (m *defaultMember) QueryMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsernameReq, opts ...grpc.CallOption) (*QueryMemberDetailByUsernameResp, error) {
+func (m *defaultMember) GetMemberDetailByUsername(ctx context.Context, in *QueryMemberDetailByUsername, opts ...grpc.CallOption) (*MemberData, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
-	return client.QueryMemberDetailByUsername(ctx, in, opts...)
+	return client.GetMemberDetailByUsername(ctx, in, opts...)
 }
 
 // 查询用户分页列表
-func (m *defaultMember) QueryPageMemberList(ctx context.Context, in *QueryPageMemberListReq, opts ...grpc.CallOption) (*QueryPageMemberListResp, error) {
+func (m *defaultMember) GetKeywordPageMemberList(ctx context.Context, in *QueryPageMemberList, opts ...grpc.CallOption) (*QueryPageMemberListResult, error) {
 	client := pb.NewMemberClient(m.cli.Conn())
-	return client.QueryPageMemberList(ctx, in, opts...)
-}
-
-// 查询关键字用户分页列表
-func (m *defaultMember) QueryKeywordPageMemberList(ctx context.Context, in *QueryKeywordPageMemberListReq, opts ...grpc.CallOption) (*QueryKeywordPageMemberListResp, error) {
-	client := pb.NewMemberClient(m.cli.Conn())
-	return client.QueryKeywordPageMemberList(ctx, in, opts...)
+	return client.GetKeywordPageMemberList(ctx, in, opts...)
 }
